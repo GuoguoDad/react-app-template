@@ -4,6 +4,7 @@
     ],
     "plugins": [
       "@babel/plugin-transform-runtime",
-      "@babel/plugin-proposal-function-bind"
+      "@babel/plugin-proposal-function-bind",
+      ["import", { "libraryName": "antd-mobile", "style": "css" }]
     ]
 }

@@ -43,6 +43,9 @@ module.exports ={
       filename: '[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify("development")
+    }),
     new HtmlWebpackPlugin({
         title: 'fe-app',
         filename: 'index.html',

@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -43,6 +44,9 @@ module.exports ={
     new MiniCssExtractPlugin({
       filename: '[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify("production")
     }),
     new HtmlWebpackPlugin({
         title: 'fe-app',
