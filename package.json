@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --progress",
-    "build:prod": "rimraf ./dist/* && ./node_modules/.bin/webpack --config webpack.prod.js --progress"
+    "build": "rimraf ./dist/* && ./node_modules/.bin/webpack --config webpack.prod.js --progress"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -40,15 +39,16 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "css-loader": "^4.2.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "less": "^3.12.2",
+    "css-loader": "^4.2.1",
     "less-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^0.10.0",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.2",
+    "mini-css-extract-plugin": "^0.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
