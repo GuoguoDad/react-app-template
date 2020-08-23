@@ -23,13 +23,11 @@ instance.interceptors.request.use(...TokenInjectRequestInterceptor);
 
 export const CommonFetch = {
     get: <T = any>(url: string, config?: AxiosRequestConfig) => {
-        return instance
-            .get<BetaBaseResponse<T>>(url, { ...config })
+        return instance.get<BetaBaseResponse<T>>(url, { ...config })
             .then(res => res.data);
     },
     post: <T = any>(url: string, data: any = {}, config?: AxiosRequestConfig) => {
-        return instance
-            .post<BetaBaseResponse<T>>(url, data, { ...config })
+        return instance.post<BetaBaseResponse<T>>(url, data, { ...config })
             .then(res => res.data);
     },
     request: <T = any>(config: AxiosRequestConfig) =>

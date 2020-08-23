@@ -1,4 +1,4 @@
-import './style/index.css';
+import './style/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
