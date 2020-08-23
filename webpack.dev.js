@@ -4,14 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports ={
-  mode: 'development',
   entry: {
-    app: "./src/apps/index.tsx"
-  },
-  output: {
-    path: path.resolve(__dirname + "/dist"), //生成的文件存放目录
-    filename: "bundle-[name]-[hash:5].js",
-    chunkFilename: "bundle-[name]-[hash:5].js"
+    app: "./src/index.tsx"
   },
   module: {
     rules: [
@@ -42,9 +36,6 @@ module.exports ={
     new MiniCssExtractPlugin({
       filename: '[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify("development")
     }),
     new HtmlWebpackPlugin({
         title: 'fe-app',

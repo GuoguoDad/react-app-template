@@ -2,16 +2,16 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports ={
-  mode: 'production',
   entry: {
-    app: "./src/apps/index.tsx"
+    app: "./src/index.tsx"
   },
   output: {
-    path: path.resolve(__dirname + "/dist"), //生成的文件存放目录
+    path: path.resolve(__dirname + "/dist"),
     filename: "bundle-[name]-[hash:5].js",
     chunkFilename: "bundle-[name]-[hash:5].js"
   },
@@ -25,7 +25,7 @@ module.exports ={
                 {
                     loader: 'ts-loader',
                     options: {
-                        transpileOnly: true
+                      transpileOnly: true
                     }
                 }
             ]
@@ -40,13 +40,11 @@ module.exports ={
     modules: ["node_modules"],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
+  devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify("production")
     }),
     new HtmlWebpackPlugin({
         title: 'fe-app',
@@ -56,7 +54,15 @@ module.exports ={
   ],
   optimization: {
     minimizer: [
-      new UglifyJsPlugin(),
+      new TerserPlugin(),
+      new UglifyJsPlugin({
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions:{
+          warnings: false,
+          compress: true
+        }
+      }),
       new OptimizeCSSAssetsPlugin()
     ],
   },
