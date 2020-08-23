@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports ={
   mode: 'development',
   entry: {
-    app: "./src/index.tsx"
+    app: "./src/apps/index.tsx"
   },
   output: {
     path: path.resolve(__dirname + "/dist"), //生成的文件存放目录

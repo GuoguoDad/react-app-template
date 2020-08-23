@@ -5,6 +5,7 @@
     "plugins": [
       "@babel/plugin-transform-runtime",
       "@babel/plugin-proposal-function-bind",
+      "syntax-dynamic-import",
       ["import", { "libraryName": "antd-mobile", "style": "css" }]
     ]
 }
