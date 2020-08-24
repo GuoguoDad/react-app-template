@@ -21,7 +21,7 @@ instance.interceptors.response.use(...ErrorResponseInterceptor);
 // 注入token
 instance.interceptors.request.use(...TokenInjectRequestInterceptor);
 
-export const CommonFetch = {
+const CommonFetch = {
     get: <T = any>(url: string, config?: AxiosRequestConfig) => {
         return instance.get<BetaBaseResponse<T>>(url, { ...config })
             .then(res => res.data);
@@ -33,3 +33,5 @@ export const CommonFetch = {
     request: <T = any>(config: AxiosRequestConfig) =>
         instance.request<BetaBaseResponse<T>>({ ...config })
 };
+
+export default CommonFetch;

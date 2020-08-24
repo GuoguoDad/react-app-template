@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, incrementByAmount, incrementAsync, selectCount } from './CounterSlice';
 import styles from './Counter.module.less';
 
-export const Counter = () => {
+const Counter = () => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState<number>(2);
@@ -52,3 +52,5 @@ export const Counter = () => {
     </div>
   );
 }
+
+export default Counter;

@@ -1,16 +1,16 @@
-import './style/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import './style/index.less';
 
 import { store } from './store';
-import { Counter } from './apps/counter/Counter'
+import Routes from './routes';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={ store }>
-      <Counter />
+      <Routes />
     </Provider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
