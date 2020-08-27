@@ -1,5 +1,5 @@
 import { Router } from './kits';
-import Counter from './apps/counter/Counter';
+import Counter from './apps/counter/counter';
 
 const routes = [
   {

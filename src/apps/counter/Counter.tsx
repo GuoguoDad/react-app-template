@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, incrementByAmount, incrementAsync, selectCount } from './CounterSlice';
+import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice';
+import { RootState } from '../../store';
 import styles from './Counter.module.less';
 
 const Counter = () => {
-  const count = useSelector(selectCount);
+  const { value } = useSelector((state: RootState)=> state.counter);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState<number>(2);
 
@@ -18,11 +19,13 @@ const Counter = () => {
         >
           +
         </button>
-        <span className={styles.value}>{count}</span>
+        <span className={styles.value}>{value}</span>
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={() => {
+            dispatch(decrement())
+          }}
         >
           -
         </button>

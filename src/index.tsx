@@ -8,7 +8,7 @@ import Routes from './routes';
 
 ReactDOM.render(
   <React.Fragment>
-    <Provider store={ store }>
+    <Provider store={store}>
       <Routes />
     </Provider>
   </React.Fragment>,

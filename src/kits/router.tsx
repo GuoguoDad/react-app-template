@@ -69,12 +69,12 @@ const renderRoutes = routes => props => {
 
   return (
     <Router history={hashHistory}>
-    <RenderRoutes
-      routesConfig={routes}
-      history={hashHistory}
-      pathname={pathname}
-      {...props}
-    />
+      <RenderRoutes
+        routesConfig={routes}
+        history={hashHistory}
+        pathname={pathname}
+        {...props}
+      />
     </Router>
   );
 };

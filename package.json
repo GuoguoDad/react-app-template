@@ -7,6 +7,7 @@
     "build": "rimraf ./dist/* && ./node_modules/.bin/webpack --mode=production --config webpack.prod.js --progress"
   },
   "dependencies": {
+    "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.4.0",
     "antd-mobile": "^2.3.3",
     "axios": "^0.20.0",
@@ -20,8 +21,11 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
+    "redux-logger": "^3.0.6",
+    "reselect": "^4.0.0",
     "rimraf": "^3.0.2",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -38,6 +42,8 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-transition-group": "^4.4.0",
+    "@types/redux-logger": "^3.0.8",
+    "@types/uuid": "^8.3.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
     "css-loader": "^4.2.1",
