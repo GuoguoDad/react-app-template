@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "msg": "ok",
+  "data|10": [
+    {
+      "bookId": "@uuid",
+      "bookName": "@ctitle",
+      "author": "@cname",
+      "price|48-89.1-2": 1
+    }
+  ],
+  "success": true 
+}

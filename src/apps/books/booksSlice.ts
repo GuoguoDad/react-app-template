@@ -8,31 +8,18 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 import { RootState } from '../../store';
-
-type Book = {
-  bookId: string;
-  bookName: string;
-  author: string;
-  price: number
-}
-
-type queryBooksParam = {
-  pageNo: number,
-  pageSize: number
-}
+import { queryBooksByPage, PageParam, Book } from './webapi';
 
 export const booksAdapter = createEntityAdapter<Book>({
   selectId: book => book.bookId,
   sortComparer: (book1, book2) => book1.bookName.localeCompare(book2.bookName) 
 }) 
 
-export const queryBooksByPageAsync = createAsyncThunk<Book[], Partial<queryBooksParam>, { state: RootState }>(
+export const queryBooksByPageAsync = createAsyncThunk<Book[], PageParam, { state: RootState }>(
   'add/books',
-  async (param, { getState, requestId }) => {
-    const { pageNo, pageSize } = param;
-    const books: Book[] = [];
-
-    return books;
+  async (params, { getState, requestId }) => {
+    const { data } = await queryBooksByPage(params)
+    return data;
   }
 ) 
 
@@ -62,6 +49,6 @@ export const booksSlice = createSlice({
   }
 })
 
-export const { bookAdd, bookEdit } = booksSlice.actions
+export const { bookAdd, bookEdit } = booksSlice.actions;
 
 export default booksSlice.reducer;

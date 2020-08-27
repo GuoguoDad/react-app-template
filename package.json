@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "mock": "nodemon ./mocks/index.js",
     "dev": "./node_modules/.bin/webpack-dev-server --mode=development --config webpack.dev.js --progress",
     "build": "rimraf ./dist/* && ./node_modules/.bin/webpack --mode=production --config webpack.prod.js --progress"
   },
@@ -52,6 +53,9 @@
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
     "mini-css-extract-plugin": "^0.10.0",
+    "mockjs-lite": "^0.3.3",
+    "node-walkdir": "^1.0.0",
+    "nodemon": "^2.0.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
