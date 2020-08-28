@@ -1,6 +1,6 @@
 import { Router } from './kits';
 import Counter from './apps/counter/counter';
-import BooksManageList from './apps/books';
+import BooksManageList from './apps/books/index';
 
 const routes = [
   {
