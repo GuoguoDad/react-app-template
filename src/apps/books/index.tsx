@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { EntityState } from '@reduxjs/toolkit';
 import { ListView } from 'antd-mobile';
@@ -8,11 +8,9 @@ import { RootState } from '../../store';
 import { Book } from './webapi';
 import styles from './books.module.less';
 
-
 const BooksManageList = () => {
   const books = useSelector((state: RootState) => state.books)
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(()=>{
     const params= {
@@ -27,26 +25,18 @@ const BooksManageList = () => {
     <div
       key={`${sectionID}-${rowID}`}
       className={styles.separatorLine}
-      style={{}}
     />
   );
 
   const row = (rowData: Book, sectionID: string | number, rowID: string | number) => {
     const { bookName, author, price } = rowData;
     return (
-      <div key={rowID} style={{ padding: '0 15px' }}>
-        <div 
-          style={{
-              lineHeight: '50px',
-              color: '#888',
-              fontSize: 18,
-              borderBottom: '1px solid #F6F6F6',
-            }}
-        >{ bookName }</div>
-        <div style={{ display: 'flex', padding: '15px 0' }}>
-          <div style={{ lineHeight: 1 }}>
-            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{ author }</div>
-            <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>{ price }</span>¥</div>
+      <div key={rowID} className={styles.item} >
+        <div className={styles.bookName}>{ bookName }</div>
+        <div className={styles.author}>
+          <div className={styles.bottomView}>
+            <div className={styles.authorTxt}>{ author }</div>
+            <div><span className={styles.price}>{ price }</span>¥</div>
           </div>
         </div>
       </div>
@@ -72,12 +62,11 @@ const BooksManageList = () => {
       dataSource={dataSource}
       renderHeader={() => <span>header</span>}
       renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-        {isLoading ? 'Loading...' : 'Loaded'}
+        {books.isLoading ? 'Loading...' : 'Loaded'}
       </div>)}
       renderRow={row}
       renderSeparator={separator}
       className="am-list"
-      pageSize={4}
       useBodyScroll
       onScroll={() => { console.log('scroll'); }}
       scrollRenderAheadDistance={500}

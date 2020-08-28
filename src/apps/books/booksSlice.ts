@@ -25,7 +25,9 @@ export const queryBooksByPageAsync = createAsyncThunk<Book[], PageParam, { state
 
 export const booksSlice = createSlice({
   name: 'books',
-  initialState: booksAdapter.getInitialState(),
+  initialState: booksAdapter.getInitialState({
+    isLoading: false
+  }),
   reducers: {
     bookAdd: {
       reducer(state, action: PayloadAction<Book>){
@@ -43,8 +45,15 @@ export const booksSlice = createSlice({
     }
   },
   extraReducers: builder => {
+    builder.addCase(queryBooksByPageAsync.pending, (state)=>{
+      state.isLoading = true
+    })
     builder.addCase(queryBooksByPageAsync.fulfilled, (state, { payload })=> {
+      state.isLoading = false
       booksAdapter.addMany(state, payload)
+    }),
+    builder.addCase(queryBooksByPageAsync.rejected, (state)=> {
+      state.isLoading = false
     })
   }
 })
