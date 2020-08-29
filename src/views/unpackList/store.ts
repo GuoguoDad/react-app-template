@@ -7,6 +7,7 @@ interface CounterState {
   keywork: string;
   currentPage: number;
   isLoading: boolean;
+  refreshing: boolean;
   hasMore: boolean;
 }
 
@@ -15,6 +16,7 @@ const initialState: CounterState = {
   keywork: '',
   currentPage: 1,
   isLoading: false,
+  refreshing: false,
   hasMore: true
 }
 
@@ -24,7 +26,11 @@ export const unpackListSlice = createSlice({
   reducers: {
     setKeywork: (state, action: PayloadAction<string>) => {
       state.keywork = action.payload
-    }
+    },
+    pullRefresh: (state) => {
+      state.refreshing = true
+      state.currentPage = 1
+    },
   },
   extraReducers: builder => {
     builder.addCase(queryUnpackListAsync.pending, (state) => {
@@ -32,11 +38,20 @@ export const unpackListSlice = createSlice({
     }),
     builder.addCase(queryUnpackListAsync.fulfilled, (state, { payload }) => {
       state.isLoading = false
-      state.dataList = state.dataList.concat(payload.dataList)
+      if(state.refreshing) {
+        state.dataList = state.dataList = payload.dataList
+      }else{
+        state.dataList = state.dataList.concat(payload.dataList)
+      }
       if(state.currentPage >= payload.totalPageCount || payload.dataList.length === 0){
         state.hasMore = false
+      }else{
+        state.hasMore = true
       }
       state.currentPage += 1
+      if(state.refreshing){
+        state.refreshing = false
+      }
     }),
     builder.addCase(queryUnpackListAsync.rejected, (state) => {
       state.isLoading = false
@@ -44,5 +59,5 @@ export const unpackListSlice = createSlice({
   }
 })
 
-export const { setKeywork } = unpackListSlice.actions;
+export const { setKeywork, pullRefresh } = unpackListSlice.actions;
 export default unpackListSlice.reducer;

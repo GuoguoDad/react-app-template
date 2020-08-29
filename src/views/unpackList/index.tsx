@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ListView, SearchBar } from 'antd-mobile';
+import { ListView, PullToRefresh, SearchBar } from 'antd-mobile';
 import './index.less';
 
 import { Header } from '../../components';
 import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
+import { pullRefresh } from './store';
 import { unpackGoods } from './types';
 import Item from './component/item';
 
@@ -18,7 +19,13 @@ const ListContainer = (props: { children?: ReactNode }) => {
 }
 
 const unpackList = () => {
-  const { currentPage, isLoading, dataList, hasMore } = useSelector((state: RootState) => state.unpacks)
+  const { 
+    currentPage, 
+    isLoading, 
+    dataList, 
+    refreshing,
+    hasMore 
+  } = useSelector((state: RootState) => state.unpacks)
   const dispatch = useDispatch();
 
   const [height, setHeight] = useState(0)
@@ -62,6 +69,11 @@ const unpackList = () => {
     }
   }
 
+  const refresh = () => {
+    dispatch(pullRefresh())
+    queryList()
+  }
+
   const ds = new ListView.DataSource({ rowHasChanged: (r1: unpackGoods, r2: unpackGoods) => r1 !== r2 });
 
   return (
@@ -83,6 +95,12 @@ const unpackList = () => {
         renderRow={row}
         renderFooter={() => renderLoading()}
         className="list-view-container"
+        pullToRefresh={
+          <PullToRefresh
+            refreshing={refreshing}
+            onRefresh={() => refresh()}
+          />
+        }
         onEndReached={()=> loadMore()}
         renderBodyComponent={() => <ListContainer />}
         scrollRenderAheadDistance={500}
