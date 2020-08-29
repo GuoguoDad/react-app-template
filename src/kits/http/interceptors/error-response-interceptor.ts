@@ -5,7 +5,7 @@ import { BetaBaseResponse } from '../response';
 export const ErrorResponseInterceptor: AxiosInterceptor<AxiosResponse<BetaBaseResponse<any>>> = [
     // @ts-ignore
     res => {
-        if (!res.data?.success) {
+        if (res.data?.code != 0) {
             if (process.env.NODE_ENV === "development") {
                 console.warn(`___________request error_______________`);
                 console.warn(`${res.config.url} request error ${res.data.msg}`);

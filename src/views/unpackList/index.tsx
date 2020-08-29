@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, ReactNode } from 'react';
+import React, { useEffect, useRef, useState, ReactNode, MutableRefObject, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListView } from 'antd-mobile';
 import './index.less';
@@ -22,7 +22,7 @@ const unpackList = () => {
   const dispatch = useDispatch();
 
   const [height, setHeight] = useState(0)
-  const lvRef = useRef(null)
+  const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
   const queryList = () => {
     const params= {
@@ -36,17 +36,31 @@ const unpackList = () => {
     queryList()
   }, [])
 
-  useEffect(()=>{
-    console.log("==lvRef:", lvRef.current)
-    // const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(lvRef)?.parentNode?.offsetTop;
-    // console.log("---------------------:",hei)
+  useEffect(() => {
+    const offsetTop = preDomRef.current?.offsetTop ?? 0
+    const height = document.documentElement.clientHeight - offsetTop;
+    setHeight(height)
   })
 
+  /**
+   * 渲染数据项
+   * @param rowData 
+   * @param sectionID 
+   * @param rowID 
+   */
   const row = (rowData: unpackGoods, sectionID: string | number, rowID: string | number) => {
     return (
       <Item data={rowData} sectionID={sectionID} rowID={rowID}/>
     );
   };
+
+  const renderFooter = () => {
+    return (
+      <div style={{ padding: 15, textAlign: 'center' }}>
+        {isLoading ? '加载中...' : hasMore ? '加载结束' : '没有更多了~'}
+      </div>
+    )
+  }
 
   const loadMore = () => {
     if (hasMore) {
@@ -66,19 +80,13 @@ const unpackList = () => {
         backFun={()=>{console.log('-----back')}}
         rightFun={()=>{console.log('-----add')}}
       />
+      <div ref={preDomRef} />
       <ListView 
         initialListSize = {20}
         dataSource={ds.cloneWithRows(dataList)}
-        style={{
-          height: document.documentElement.clientHeight - 100,
-        }}
+        style={{ height: height }}
         renderRow={row}
-        renderFooter={() => (
-          <div style={{ padding: 30, textAlign: 'center' }}>
-            {isLoading ? 'Loading...' : 'Loaded'}
-          </div>
-          )
-        }
+        renderFooter={() => renderFooter()}
         className="list-view-container"
         onEndReached={()=> loadMore()}
         renderBodyComponent={() => <ListContainer />}

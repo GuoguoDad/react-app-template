@@ -1,8 +1,6 @@
 export interface BetaBaseResponse<T> {
-    redirect?: boolean;
     code: number;
     data: T;
-    success?: boolean;
     msg: string;
 }
 export interface BetaSuccessResponse<T> extends BetaBaseResponse<T> {
