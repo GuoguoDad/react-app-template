@@ -7,7 +7,7 @@ interface CounterState {
   keywork: string;
   currentPage: number;
   isLoading: boolean;
-  pullRefresh: boolean;
+  hasMore: boolean;
 }
 
 const initialState: CounterState = {
@@ -15,19 +15,13 @@ const initialState: CounterState = {
   keywork: '',
   currentPage: 1,
   isLoading: false,
-  pullRefresh: false
+  hasMore: true
 }
 
 export const unpackListSlice = createSlice({
   name: 'unpacking',
   initialState,
   reducers: {
-    refresh: state => {
-      state.pullRefresh = true
-    },
-    endfresh: state => {
-      state.pullRefresh = false
-    },
     setKeywork: (state, action: PayloadAction<string>) => {
       state.keywork = action.payload
     }
@@ -39,6 +33,10 @@ export const unpackListSlice = createSlice({
     builder.addCase(queryUnpackListAsync.fulfilled, (state, { payload }) => {
       state.isLoading = false
       state.dataList = state.dataList.concat(payload.dataList)
+      if(state.currentPage >= payload.totalPageCount || payload.dataList.length === 0){
+        state.hasMore = false
+      }
+      state.currentPage += 1
     }),
     builder.addCase(queryUnpackListAsync.rejected, (state) => {
       state.isLoading = false
@@ -46,5 +44,5 @@ export const unpackListSlice = createSlice({
   }
 })
 
-export const { refresh, endfresh, setKeywork } = unpackListSlice.actions;
+export const { setKeywork } = unpackListSlice.actions;
 export default unpackListSlice.reducer;

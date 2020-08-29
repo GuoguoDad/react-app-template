@@ -18,19 +18,23 @@ const ListContainer = (props: { children?: ReactNode }) => {
 }
 
 const unpackList = () => {
-  const { currentPage, isLoading, dataList } = useSelector((state: RootState) => state.unpacks)
+  const { currentPage, isLoading, dataList, hasMore } = useSelector((state: RootState) => state.unpacks)
   const dispatch = useDispatch();
 
   const [height, setHeight] = useState(0)
   const lvRef = useRef(null)
 
-  useEffect(()=>{
+  const queryList = () => {
     const params= {
       pageNo: currentPage,
       pageSize: 20
     }
     dispatch(queryUnpackListAsync(params))
-  },[])
+  }
+
+  useEffect(() => {
+    queryList()
+  }, [])
 
   useEffect(()=>{
     console.log("==lvRef:", lvRef.current)
@@ -44,6 +48,12 @@ const unpackList = () => {
     );
   };
 
+  const loadMore = () => {
+    if (hasMore) {
+      queryList()
+    }
+  }
+
   const ds = new ListView.DataSource({ rowHasChanged: (r1: unpackGoods, r2: unpackGoods) => r1 !== r2 });
 
   return (
@@ -56,17 +66,21 @@ const unpackList = () => {
         backFun={()=>{console.log('-----back')}}
         rightFun={()=>{console.log('-----add')}}
       />
-      <ListView
+      <ListView 
+        initialListSize = {20}
         dataSource={ds.cloneWithRows(dataList)}
-        renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-          {isLoading ? 'Loading...' : 'Loaded'}
-        </div>)}
-        renderRow={row}
         style={{
           height: document.documentElement.clientHeight - 100,
-          overflow: 'auto',
-          marginTop: '0.1rem'
         }}
+        renderRow={row}
+        renderFooter={() => (
+          <div style={{ padding: 30, textAlign: 'center' }}>
+            {isLoading ? 'Loading...' : 'Loaded'}
+          </div>
+          )
+        }
+        className="list-view-container"
+        onEndReached={()=> loadMore()}
         renderBodyComponent={() => <ListContainer />}
         scrollRenderAheadDistance={500}
         onEndReachedThreshold={10}

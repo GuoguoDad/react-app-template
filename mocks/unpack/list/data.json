@@ -22,8 +22,8 @@
         "type": "@shuffle([1,2])"
       }
     ],
-    "totalPage": 2,
-    "currentPage": 1
+    "totalCount": 20,
+    "totalPageCount": 2
   },
   "success": true
 }
