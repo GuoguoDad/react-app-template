@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState, ReactNode, MutableRefObject, RefObject } from 'react';
+import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ListView } from 'antd-mobile';
+import { ListView, SearchBar } from 'antd-mobile';
 import './index.less';
 
 import { Header } from '../../components';
@@ -42,21 +42,15 @@ const unpackList = () => {
     setHeight(height)
   })
 
-  /**
-   * 渲染数据项
-   * @param rowData 
-   * @param sectionID 
-   * @param rowID 
-   */
   const row = (rowData: unpackGoods, sectionID: string | number, rowID: string | number) => {
     return (
       <Item data={rowData} sectionID={sectionID} rowID={rowID}/>
     );
   };
 
-  const renderFooter = () => {
+  const renderLoading = () => {
     return (
-      <div style={{ padding: 15, textAlign: 'center' }}>
+      <div className="unpack_loading">
         {isLoading ? '加载中...' : hasMore ? '加载结束' : '没有更多了~'}
       </div>
     )
@@ -80,13 +74,14 @@ const unpackList = () => {
         backFun={()=>{console.log('-----back')}}
         rightFun={()=>{console.log('-----add')}}
       />
+      <SearchBar placeholder="Search" maxLength={8} />
       <div ref={preDomRef} />
-      <ListView 
+      <ListView
         initialListSize = {20}
         dataSource={ds.cloneWithRows(dataList)}
         style={{ height: height }}
         renderRow={row}
-        renderFooter={() => renderFooter()}
+        renderFooter={() => renderLoading()}
         className="list-view-container"
         onEndReached={()=> loadMore()}
         renderBodyComponent={() => <ListContainer />}
