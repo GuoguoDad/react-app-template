@@ -6,9 +6,11 @@ import './index.less';
 import { Header } from '../../components';
 import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
-import { pullRefresh } from './store';
+import { pullRefresh, setCurrentPage } from './store';
 import { unpackGoods } from './types';
 import Item from './component/item';
+
+const MyPullToRefresh: any = PullToRefresh;
 
 const ListContainer = (props: { children?: ReactNode }) => {
   return (
@@ -31,16 +33,16 @@ const unpackList = () => {
   const [height, setHeight] = useState(0)
   const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
-  const queryList = () => {
-    const params= {
-      pageNo: currentPage,
+  const queryList = (pageNo: number) => {
+    const params = {
+      pageNo,
       pageSize: 20
     }
     dispatch(queryUnpackListAsync(params))
   }
 
   useEffect(() => {
-    queryList()
+    queryList(currentPage)
   }, [])
 
   useEffect(() => {
@@ -65,13 +67,15 @@ const unpackList = () => {
 
   const loadMore = () => {
     if (hasMore) {
-      queryList()
+      const newPage = currentPage + 1
+      dispatch(setCurrentPage(newPage))
+      queryList(newPage)
     }
   }
 
   const refresh = () => {
     dispatch(pullRefresh())
-    queryList()
+    queryList(1)
   }
 
   const ds = new ListView.DataSource({ rowHasChanged: (r1: unpackGoods, r2: unpackGoods) => r1 !== r2 });
@@ -96,7 +100,7 @@ const unpackList = () => {
         renderFooter={() => renderLoading()}
         className="list-view-container"
         pullToRefresh={
-          <PullToRefresh
+          <MyPullToRefresh
             refreshing={refreshing}
             onRefresh={() => refresh()}
           />
