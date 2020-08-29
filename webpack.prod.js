@@ -31,9 +31,10 @@ module.exports ={
             ]
         },
         { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
-        { test: /\.css$/, use: [MiniCssExtractPlugin.loader, { loader: "css-loader" }] },
-        { test: /\.less$/, use: [MiniCssExtractPlugin.loader, { loader: "css-loader" }, { loader: "less-loader" }] },
-        { test: /\.(png|gif|svg)$/, loader: 'file-loader' }
+        { test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader, options: { publicPath: '../'}}, { loader: "css-loader" }] },
+        { test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader, options: { publicPath: '../'}}, { loader: "css-loader" }, { loader: "less-loader" }] },
+        { test: /\.html$/, use: { loader: 'html-loader' }},
+        { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: "img/[name].[hash:5].[ext]", limit: 1024 ,publicPath: "../" }}] }
     ]
   },
   resolve: {
@@ -43,7 +44,7 @@ module.exports ={
   devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name]-[hash:5].css',
+      filename: 'css/[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
     }),
     new HtmlWebpackPlugin({
@@ -54,16 +55,16 @@ module.exports ={
   ],
   optimization: {
     minimizer: [
-      new TerserPlugin(),
-      new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions:{
-          warnings: false,
-          compress: true
-        }
-      }),
-      new OptimizeCSSAssetsPlugin()
+      // new TerserPlugin(),
+      // new UglifyJsPlugin({
+      //   parallel: true,
+      //   sourceMap: true,
+      //   uglifyOptions:{
+      //     warnings: false,
+      //     compress: true
+      //   }
+      // }),
+      // new OptimizeCSSAssetsPlugin()
     ],
   },
 }

@@ -2,8 +2,8 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { reduxBatch }  from '@manaflair/redux-batch';
 import logger from 'redux-logger';
 
-import counterReducer from './apps/counter/counterSlice';
-import booksReducer from './apps/books/booksSlice';
+import counterReducer from './views-demo/counter/counterSlice';
+import booksReducer from './views-demo/books/booksSlice';
 
 const middleware = getDefaultMiddleware().concat(logger);
 const reducer =  {

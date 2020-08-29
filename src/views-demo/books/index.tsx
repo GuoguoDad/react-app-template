@@ -34,6 +34,7 @@ const BooksManageList = () => {
       <div key={rowID} className={styles.item} >
         <div className={styles.bookName}>{ bookName }</div>
         <div className={styles.author}>
+          <img style={{ height: '64px', marginRight: '15px' }} src={'img/logo192.png'} />
           <div className={styles.bottomView}>
             <div className={styles.authorTxt}>{ author }</div>
             <div><span className={styles.price}>{ price }</span>¥</div>

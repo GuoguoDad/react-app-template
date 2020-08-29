@@ -1,6 +1,6 @@
 import { Router } from './kits';
-import Counter from './apps/counter/counter';
-import BooksManageList from './apps/books/index';
+import Counter from './views-demo/counter/counter';
+import BooksManageList from './views-demo/books/index';
 
 const routes = [
   {

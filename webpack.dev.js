@@ -25,7 +25,7 @@ module.exports ={
         { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
         { test: /\.css$/, use: [MiniCssExtractPlugin.loader, { loader: "css-loader" }] },
         { test: /\.less$/, use: [MiniCssExtractPlugin.loader, { loader: "css-loader" }, { loader: "less-loader" }] },
-        { test: /\.(png|gif|svg)$/, loader: 'file-loader' }
+        { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: "img/[name].[hash:5].[ext]", limit: 1024 ,publicPath: "../" }}] }
     ]
   },
   resolve: {
