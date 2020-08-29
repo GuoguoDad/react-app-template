@@ -5,12 +5,12 @@ import { AxiosInterceptor } from './types';
 export const AuthInterceptor: AxiosInterceptor<AxiosResponse<BetaBaseResponse<unknown>>> = [
     // @ts-ignore
     async res => {
-        console.log('res data redirect', res?.data?.redirect);
-        if (res?.data?.redirect) {
-            // captureMessage('token expired');
-            // eslint-disable-next-line prefer-promise-reject-errors
-            return Promise.reject('token expired');
-        }
+        // console.log('res data redirect', res?.data?.redirect);
+        // if (res?.data?.redirect) {
+        //     // captureMessage('token expired');
+        //     // eslint-disable-next-line prefer-promise-reject-errors
+        //     return Promise.reject('token expired');
+        // }
         return res;
     },
     error => {

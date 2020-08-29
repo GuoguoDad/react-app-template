@@ -1,0 +1,29 @@
+{
+  "code": 0,
+  "msg": "ok",
+  "data": {
+    "dataList|20" :[{
+      "ruleId": "@id",
+      "mainGoodsInfo": {
+          "imageList": ["@uuid"],
+          "goodsName": "@ctitle",
+          "barCode": "@id",
+          "inventoryNum": "@increment",
+          "retailPrice|48-89.1-2": 1
+        },
+        "subGoodsInfo": {
+          "imageList": ["@uuid"],
+          "goodsName": "@ctitle",
+          "barCode": "@id",
+          "inventoryNum": "@increment",
+          "retailPrice|48-89.1-2": 1
+        },
+        "proportion|1-999": 1,
+        "type": "@shuffle([1,2])"
+      }
+    ],
+    "totalPage": 2,
+    "currentPage": 1
+  },
+  "success": true
+}
