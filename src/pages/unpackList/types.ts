@@ -1,4 +1,5 @@
 export type Goods = {
+  goodsCode: string; //商品编号
   imageList: string[]; //列表图片
   goodsName: string; //商品名称
   barCode: string; //条形码
@@ -21,10 +22,11 @@ export type unpackGoodsPageList = {
 }
 
 export interface PageParam {
-  pageNo: number;
+  pageNum: number;
   pageSize: number;
 }
 
-export interface queryListParam extends PageParam{
-  keyword?: string;
+export interface queryListParam extends PageParam {
+  storeCode: string;
+  keyWord?: string;
 }

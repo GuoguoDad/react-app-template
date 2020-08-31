@@ -36,9 +36,11 @@ const unpackList = () => {
   const [height, setHeight] = useState(0)
   const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
-  const queryList = (pageNo: number) => {
+  const queryList = (pageNum: number) => {
     const params = {
-      pageNo,
+      storeCode: '',
+      keyWord: '',
+      pageNum,
       pageSize: 20
     }
     dispatch(queryUnpackListAsync(params))
