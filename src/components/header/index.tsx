@@ -1,5 +1,6 @@
 import React from 'react';
 import './header.less';
+import BackImg from 'images/back.png';
 
 export const Header = (props: HeaderProps) => {
   const {
@@ -15,7 +16,7 @@ export const Header = (props: HeaderProps) => {
     <div className="com_header">
       <div onClick={()=> backFun()} className="left">
         {
-          hasBack ? <img className="back_icon" src={'img/back.png'}/> : <div/>
+          hasBack ? <img className="back_icon" src={BackImg}/> : <div/>
         }
       </div>
       <div className="middle alignCenter">{title}</div>

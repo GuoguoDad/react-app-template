@@ -6,19 +6,19 @@
       "ruleId": "@id",
       "mainGoodsInfo": {
           "imageList": ["@uuid"],
-          "goodsName": "@ctitle",
+          "goodsName": "@cparagraph(2)",
           "barCode": "@id",
           "inventoryNum": "@increment",
           "retailPrice|48-89.1-2": 1
         },
         "subGoodsInfo": {
           "imageList": ["@uuid"],
-          "goodsName": "@ctitle",
+          "goodsName": "@cparagraph(2)",
           "barCode": "@id",
           "inventoryNum": "@increment",
           "retailPrice|48-89.1-2": 1
         },
-        "proportion|1-999": 1,
+        "proportion|1-49": 1,
         "type": "@shuffle([1,2])"
       }
     ],

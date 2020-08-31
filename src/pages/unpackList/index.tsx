@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ListView, PullToRefresh, SearchBar } from 'antd-mobile';
 import './index.less';
 
+import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store';
 import { Header } from '../../components';
 import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
-import { pullRefresh, setCurrentPage } from './store';
 import { unpackGoods } from './types';
 import Item from './component/item';
+import UnpackingModal from './component/popup-modal';
 
 const MyPullToRefresh: any = PullToRefresh;
 
@@ -26,8 +27,10 @@ const unpackList = () => {
     isLoading, 
     dataList, 
     refreshing,
-    hasMore 
+    hasMore,
+    showUnpackingModal
   } = useSelector((state: RootState) => state.unpacks)
+
   const dispatch = useDispatch();
 
   const [height, setHeight] = useState(0)
@@ -53,7 +56,12 @@ const unpackList = () => {
 
   const row = (rowData: unpackGoods, sectionID: string | number, rowID: string | number) => {
     return (
-      <Item data={rowData} sectionID={sectionID} rowID={rowID}/>
+      <Item 
+        data={rowData} 
+        sectionID={sectionID} 
+        rowID={rowID} 
+        toUnpackPackage={() => dispatch(setShowUnpackingModal({show: true, data: rowData}))}
+      />
     );
   };
 
@@ -110,6 +118,7 @@ const unpackList = () => {
         scrollRenderAheadDistance={500}
         onEndReachedThreshold={10}
       />
+      <UnpackingModal />
     </>
   )
 }
