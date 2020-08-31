@@ -4,11 +4,12 @@ import { Modal, Stepper, Button } from 'antd-mobile';
 
 import { RootState } from '../../../store';
 import { setShowUnpackingModal } from '../store';
-import './popup-modal.less'
+import './popup-modal.less';
+import { submitUnpacking } from '../webapi';
 
 import packageIcon from 'images/package_icon.png';
 import subGoodsIcon from 'images/subgoods_iocn.png';
-
+import ArrowDown from 'images/arrow_down.png';
 
 const unpackingModal = () => {
   const {showUnpackingModal, unpackingModalData } = useSelector((state: RootState) => state.unpacks)
@@ -62,6 +63,7 @@ const unpackingModal = () => {
   }
 
   const proportion = unpackingModalData?.proportion ?? 0
+  const subNum = proportion *  mainGoodsToUnpackNum
   const renderSubGoodsInfo = () => {
     return (
       <>
@@ -74,12 +76,27 @@ const unpackingModal = () => {
           </div>
           <div className="goods-info-item row align-items-center just-content-space-between">
             <span className="inventory-num">现有库存: {unpackingModalData?.subGoodsInfo?.inventoryNum ?? 0}</span>
-            <span className="generate-txt">生成数: <span className="generate-num">{ proportion *  mainGoodsToUnpackNum }</span></span>
+            <span className="generate-txt">生成数: <span className="generate-num">{ subNum }</span></span>
           </div>
         </div>
         <span className="unpacking-relation">整件和散件的拆包配比关系为1:{proportion}</span>
       </>
     )
+  } 
+
+  const submit = async () => {
+    const param = {
+      storeCode: '',
+      mainGoodsCode: unpackingModalData?.mainGoodsInfo?.goodsCode,
+      subGoodsCode: unpackingModalData?.subGoodsInfo?.goodsCode,
+      mainNum: mainGoodsToUnpackNum.toString(),
+      subNum: subNum.toString(),
+      proportion: proportion.toString()
+    }
+    const res = await submitUnpacking(param)
+    if(res.code === 0){
+
+    }
   } 
 
   return (
@@ -92,8 +109,9 @@ const unpackingModal = () => {
     >
       {renderHeader()}
       {renderMainGoods()}
+      <div className="row center"><img className="arrow_donw" src={ArrowDown}/></div>
       {renderSubGoodsInfo()}
-      <Button className="sure-btn" type="primary">确定</Button>
+      <Button onClick={() => submit()} className="sure-btn" type="primary">确定</Button>
     </Modal>
   )
 }

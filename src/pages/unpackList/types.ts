@@ -30,3 +30,12 @@ export interface queryListParam extends PageParam {
   storeCode: string;
   keyWord?: string;
 }
+
+export interface submitUnpackingParam {
+  storeCode: string;
+  mainGoodsCode: string;
+  subGoodsCode: string;
+  mainNum: string;
+  subNum: string;
+  proportion: string;
+}

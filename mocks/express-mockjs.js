@@ -44,7 +44,7 @@ function mock(dir) {
         if(reqUrl.indexOf('/data.json') > -1) {
             reqUrl = reqUrl.split('/data.json')[0]
         }
-
+        reqUrl = reqUrl.replace(/\\/g, "/")
         if (mock.debug && routes[pathname]) {
             console.warn('[Mock Warn]: [' + filepath + ': ' + pathname + '] already exists and has been covered with new data.');
         }
