@@ -38,7 +38,7 @@ module.exports ={
     ]
   },
   resolve: {
-    modules: ["node_modules"],
+    modules: [path.resolve(__dirname, "src/assets"), "node_modules"],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   devtool: "source-map",
@@ -55,16 +55,16 @@ module.exports ={
   ],
   optimization: {
     minimizer: [
-      // new TerserPlugin(),
-      // new UglifyJsPlugin({
-      //   parallel: true,
-      //   sourceMap: true,
-      //   uglifyOptions:{
-      //     warnings: false,
-      //     compress: true
-      //   }
-      // }),
-      // new OptimizeCSSAssetsPlugin()
+      new TerserPlugin(),
+      new UglifyJsPlugin({
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions:{
+          warnings: false,
+          compress: true
+        }
+      }),
+      new OptimizeCSSAssetsPlugin()
     ],
   },
 }

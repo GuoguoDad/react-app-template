@@ -1,9 +1,9 @@
 import { Router } from './kits';
 //demo begin
-import Counter from './views-demo/counter/counter';
-import BooksManageList from './views-demo/books/index';
+import Counter from './pages-demo/counter/counter';
+import BooksManageList from './pages-demo/books/index';
 //page begin
-import UnpackList from './views/unpackList';
+import UnpackList from './pages/unpackList';
 
 const routes = [
   {

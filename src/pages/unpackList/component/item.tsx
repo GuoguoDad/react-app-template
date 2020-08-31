@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd-mobile';
+import GoodsImg from 'images/goods_img.png';
 import './item.less';
 
 import { unpackGoods } from '../types';
@@ -11,7 +12,7 @@ const Item = (props: ItemProps) => {
   return (
     <div className="item_container" >
       <div className="goods">
-        <img className="goods_img" src={'img/goods_img.png'} />
+        <img className="goods_img" src={GoodsImg} />
         <div className="right_container">
           <div className="goods_name row">
               <div className="goods_name_txt row">{mainGoodsInfo.goodsName}</div>
@@ -26,7 +27,7 @@ const Item = (props: ItemProps) => {
       </div>
       <hr className="separatorLine"/>
       <div className="goods">
-        <img className="goods_img" src={'img/goods_img.png'} />
+        <img className="goods_img" src={GoodsImg} />
         <div className="right_container">
           <div className="goods_name row">
               <div className="goods_name_txt row">{subGoodsInfo.goodsName}</div>

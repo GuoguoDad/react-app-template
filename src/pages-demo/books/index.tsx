@@ -8,6 +8,8 @@ import { RootState } from '../../store';
 import { Book } from './webapi';
 import styles from './books.module.less';
 
+import GoodsImg from 'images/goods_img.png';
+
 const BooksManageList = () => {
   const books = useSelector((state: RootState) => state.books)
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const BooksManageList = () => {
       <div key={rowID} className={styles.item} >
         <div className={styles.bookName}>{ bookName }</div>
         <div className={styles.author}>
-          <img style={{ height: '64px', marginRight: '15px' }} src={'img/logo192.png'} />
+          <img style={{ height: '64px', marginRight: '15px' }} src={GoodsImg} />
           <div className={styles.bottomView}>
             <div className={styles.authorTxt}>{ author }</div>
             <div><span className={styles.price}>{ price }</span>¥</div>
