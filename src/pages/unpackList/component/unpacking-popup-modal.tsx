@@ -4,8 +4,8 @@ import { Modal, Stepper, Button } from 'antd-mobile';
 
 import { RootState } from '../../../store';
 import { setShowUnpackingModal } from '../store';
-import './popup-modal.less';
-import { submitUnpacking } from '../webapi';
+import { submitUnpackPackageAsync } from '../actor';
+import './unpcking-popup-modal.less';
 
 import packageIcon from 'images/package_icon.png';
 import subGoodsIcon from 'images/subgoods_iocn.png';
@@ -93,10 +93,7 @@ const unpackingModal = () => {
       subNum: subNum.toString(),
       proportion: proportion.toString()
     }
-    const res = await submitUnpacking(param)
-    if(res.code === 0){
-
-    }
+    dispatch(submitUnpackPackageAsync(param))
   } 
 
   return (
