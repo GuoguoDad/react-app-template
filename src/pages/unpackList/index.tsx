@@ -9,7 +9,8 @@ import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
 import { unpackGoods } from './types';
 import Item from './component/item';
-import UnpackingModal from './component/popup-modal';
+import UnpackingModal from './component/unpacking-popup-modal';
+import ResultModal from './component/unpacking-result-modal';
 
 const MyPullToRefresh: any = PullToRefresh;
 
@@ -28,7 +29,6 @@ const unpackList = () => {
     dataList, 
     refreshing,
     hasMore,
-    showUnpackingModal
   } = useSelector((state: RootState) => state.unpacks)
 
   const dispatch = useDispatch();
@@ -121,6 +121,7 @@ const unpackList = () => {
         onEndReachedThreshold={10}
       />
       <UnpackingModal />
+      <ResultModal />
     </>
   )
 }

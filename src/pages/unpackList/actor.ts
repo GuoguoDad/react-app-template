@@ -13,7 +13,13 @@ export const queryUnpackListAsync = createAsyncThunk<unpackGoodsPageList, queryL
 
 export const submitUnpackPackageAsync = createAsyncThunk<string,  submitUnpackingParam, {state: RootState}> (
   'submitUnpackPackage',
-  async (params) => {
+  async (params, { getState, requestId, rejectWithValue }) => {
+    const { unpackingFlag, currentRequestId } = getState().unpacks
+    
+    if(unpackingFlag !== 'pending' || requestId !== currentRequestId) {
+      return rejectWithValue(`重复请求中requestId:${requestId}`)
+    }
+
     const res = await submitUnpacking(params)
     return res.data
   }

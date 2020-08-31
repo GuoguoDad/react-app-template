@@ -1,27 +1,41 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { queryUnpackListAsync } from './actor';
+import { extraReducers } from './extra-reducer';
 import { unpackGoods } from './types';
 
-interface CounterState {
+export interface UnpackingState {
   dataList: unpackGoods[]; //拆包关系列表数据
   keywork: string; //搜索关键词
   currentPage: number; //当前页码
   isLoading: boolean; //是否加载中
   refreshing: boolean; //是否下拉刷新中
   hasMore: boolean;//是否有更多数据
+
   showUnpackingModal: boolean; //是否显示拆包底部弹窗
   unpackingModalData: unpackGoods;//当前正在拆包的数据
+  unpackingFlag: string; //防止拆包重复点击flag
+  currentRequestId: string;//防止拆包重复点击reqId
+
+  showUnpackingResultModal: boolean;  //是否显示拆包操作弹窗
+  unpackingSuccess: boolean;//拆包操作是否成功
+  unpackingMsg: string;//拆包失败提示语
 }
 
-const initialState: CounterState = {
+const initialState: UnpackingState = {
   dataList: [],
   keywork: '',
   currentPage: 1,
   isLoading: false,
   refreshing: true,
   hasMore: true,
+
   showUnpackingModal: false,
-  unpackingModalData: {} as unpackGoods
+  unpackingModalData: {} as unpackGoods,
+  unpackingFlag: 'idle',
+  currentRequestId: '',
+  
+  showUnpackingResultModal: false,
+  unpackingSuccess: false,
+  unpackingMsg:''
 }
 
 export const unpackListSlice = createSlice({
@@ -43,32 +57,12 @@ export const unpackListSlice = createSlice({
       state.showUnpackingModal = show
       state.unpackingModalData = data || {} as unpackGoods
     },
+    setShowResultModal: (state, action: PayloadAction<boolean>) => {
+      state.showUnpackingResultModal = action.payload
+    },
   },
-  extraReducers: builder => {
-    builder.addCase(queryUnpackListAsync.pending, (state) => {
-      state.isLoading = true
-    }),
-    builder.addCase(queryUnpackListAsync.fulfilled, (state, { payload }) => {
-      state.isLoading = false
-      if(state.refreshing) {
-        state.dataList = state.dataList = payload.dataList
-      }else{
-        state.dataList = state.dataList.concat(payload.dataList)
-      }
-      if(state.currentPage >= payload.totalPageCount || payload.dataList.length === 0){
-        state.hasMore = false
-      }else{
-        state.hasMore = true
-      }
-      if(state.refreshing){
-        state.refreshing = false
-      }
-    }),
-    builder.addCase(queryUnpackListAsync.rejected, (state) => {
-      state.isLoading = false
-    })
-  }
+  extraReducers
 })
 
-export const { setKeywork, setCurrentPage, pullRefresh, setShowUnpackingModal} = unpackListSlice.actions;
+export const { setKeywork, setCurrentPage, pullRefresh, setShowUnpackingModal, setShowResultModal} = unpackListSlice.actions;
 export default unpackListSlice.reducer;
