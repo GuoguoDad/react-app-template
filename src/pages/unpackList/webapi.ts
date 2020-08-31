@@ -6,5 +6,5 @@ export const queryUnpackListByPage = (params: queryListParam) => {
 }
 
 export const submitUnpacking = (params: submitUnpackingParam) => {
-  return Fetch.post<string>('http://localhost:8090/api/unpack/sumit', params);
+  return Fetch.post<string>('http://localhost:8090/api/unpack/submit', params);
 }
