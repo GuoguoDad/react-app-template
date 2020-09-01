@@ -8,10 +8,11 @@ import { pullRefresh, setCurrentPage } from './store';
 import { RootState } from '../../store';
 import { GoodsListItem } from './component/item';
 import { Goods } from './types';
+import { RouteComponentProps } from 'react-router-dom';
 
 const MyPullToRefresh: any = PullToRefresh;
 
-const goodsList = () => {
+const goodsList = (props: RouteComponentProps<{storeCode: string}>) => {
   const { 
     currentPage, 
     isLoading, 
@@ -29,7 +30,7 @@ const goodsList = () => {
 
   const queryList = (pageNum: number) => {
     const params = {
-      storeCode: '',
+      storeCode: props.match.params.storeCode,
       keyWord,
       pageNum,
       pageSize: 20

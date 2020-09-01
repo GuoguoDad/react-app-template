@@ -16,11 +16,11 @@ const routes = [
     component: BooksManageList
   },
   {
-    path: '/unpackList',
+    path: '/unpackList/:storeCode',
     component: UnpackList
   },
   {
-    path: '/goodsList',
+    path: '/goodsList/:storeCode',
     component: GoodsList
   }
 ]

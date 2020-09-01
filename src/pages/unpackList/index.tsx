@@ -11,6 +11,7 @@ import { UnpackGoods } from './types';
 import Item from './component/item';
 import UnpackingModal from './component/unpacking-popup-modal';
 import ResultModal from './component/unpacking-result-modal';
+import { RouteComponentProps } from 'react-router-dom';
 
 const alert = Modal.alert;
 const MyPullToRefresh: any = PullToRefresh;
@@ -23,7 +24,7 @@ const ListContainer = (props: { children?: ReactNode }) => {
   );
 }
 
-const unpackList = () => {
+const unpackList = (props: RouteComponentProps<{storeCode: string}>) => {
   const { 
     currentPage, 
     isLoading, 
@@ -39,7 +40,7 @@ const unpackList = () => {
 
   const queryList = (pageNum: number) => {
     const params = {
-      storeCode: '',
+      storeCode: props.match?.params.storeCode,
       keyWord,
       pageNum,
       pageSize: 20
