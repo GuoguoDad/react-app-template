@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ListView, PullToRefresh, Modal } from 'antd-mobile';
-import { useRequest } from 'ahooks';
 import './index.less';
 
 import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store';
@@ -104,11 +103,6 @@ const unpackList = () => {
     queryList(1)
   }
 
-  const { run } = useRequest(refresh, {
-    debounceInterval: 500,
-    manual: true,
-  });
-
   const ds = new ListView.DataSource({ rowHasChanged: (r1: UnpackGoods, r2: UnpackGoods) => r1 !== r2 });
 
   return (
@@ -125,7 +119,7 @@ const unpackList = () => {
         placeholder = "搜索商品名称/条形码"
         onChange={(val: string) => {
           setKeyWord(val)
-          run()
+          refresh()
         }}
         onScanClick={()=>{
           console.log('-----scan')
