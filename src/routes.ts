@@ -4,6 +4,7 @@ import Counter from './pages-demo/counter/counter';
 import BooksManageList from './pages-demo/books/index';
 //page begin
 import UnpackList from './pages/unpackList';
+import GoodsList from './pages/goodsList';
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: '/unpackList',
     component: UnpackList
+  },
+  {
+    path: '/goodsList',
+    component: GoodsList
   }
 ]
 

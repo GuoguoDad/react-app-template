@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "dataList|20" :[
+      {
+        "goodsCode": "@uuid",
+        "imageList": ["@uuid"],
+        "goodsName": "@cparagraph(2)",
+        "barCode": "@id",
+        "inventoryNum": "@increment",
+        "retailPrice|48-89.1-2": 1
+      }
+    ],
+    "totalCount": 20,
+    "totalPageCount": 2
+  }
+}

@@ -23,6 +23,8 @@ export const SearchScanBar = (props: SearchScanBarProps) => {
     setValue(value)
     if(value && !showDel) {
       setShowDel(true)
+    }else if(!value && showDel) {
+      setShowDel(false)
     }
   }
 
