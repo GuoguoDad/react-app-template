@@ -1,5 +1,7 @@
 import { Header } from './header';
+import { SearchScanBar } from './search-scan-bar';
 
 export {
-  Header
+  Header,
+  SearchScanBar
 }

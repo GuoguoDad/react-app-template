@@ -32,7 +32,8 @@ module.exports ={
     modules: ["node_modules"],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      "@assets": path.resolve(__dirname, "./src/assets"),
+      "@kits": path.resolve(__dirname, "./src/kits"),
+      "@assets": path.resolve(__dirname, "./src/assets")
     }
   },
   plugins: [

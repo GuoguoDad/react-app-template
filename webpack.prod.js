@@ -40,6 +40,7 @@ module.exports ={
     modules: ["node_modules"],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
+      "@kits": path.resolve(__dirname, "./src/kits"),
       "@assets": path.resolve(__dirname, "./src/assets"),
     }
   },

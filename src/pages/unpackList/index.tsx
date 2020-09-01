@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ListView, PullToRefresh, SearchBar } from 'antd-mobile';
+import { ListView, PullToRefresh } from 'antd-mobile';
+import { useRequest } from 'ahooks';
 import './index.less';
 
 import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store';
-import { Header } from '../../components';
+import { Header, SearchScanBar } from '../../components';
 import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
 import { unpackGoods } from './types';
@@ -32,14 +33,14 @@ const unpackList = () => {
   } = useSelector((state: RootState) => state.unpacks)
 
   const dispatch = useDispatch();
-
+  const [keyWord, setKeyWord] = useState('')
   const [height, setHeight] = useState(0)
   const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
   const queryList = (pageNum: number) => {
     const params = {
       storeCode: '',
-      keyWord: '',
+      keyWord,
       pageNum,
       pageSize: 20
     }
@@ -88,6 +89,11 @@ const unpackList = () => {
     queryList(1)
   }
 
+  const { run } = useRequest(refresh, {
+    debounceInterval: 500,
+    manual: true,
+  });
+
   const ds = new ListView.DataSource({ rowHasChanged: (r1: unpackGoods, r2: unpackGoods) => r1 !== r2 });
 
   return (
@@ -100,7 +106,16 @@ const unpackList = () => {
         backFun={()=>{console.log('-----back')}}
         rightFun={()=>{console.log('-----add')}}
       />
-      <SearchBar placeholder="Search" maxLength={8} />
+      <SearchScanBar 
+        placeholder = "搜索商品名称/条形码"
+        onChange={(val: string) => {
+          setKeyWord(val)
+          run()
+        }}
+        onScanClick={()=>{
+          console.log('-----scan')
+        }}
+      />
       <div ref={preDomRef} />
       <ListView
         initialListSize = {20}
