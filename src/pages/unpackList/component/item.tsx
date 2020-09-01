@@ -3,8 +3,8 @@ import { Button } from 'antd-mobile';
 import './item.less';
 import { unpackGoods } from '../types';
 
-import GoodsImg from 'images/goods_img.png';
-import EditIcon from 'images/edit.png';
+import GoodsImg from '@assets/images/goods_img.png';
+import EditIcon from '@assets/images/edit.png';
 
 const Item = (props: ItemProps) => {
   const { data, toUnpackPackage } = props;

@@ -8,7 +8,7 @@ import { RootState } from '../../store';
 import { Book } from './webapi';
 import styles from './books.module.less';
 
-import GoodsImg from 'images/goods_img.png';
+import GoodsImg from '@assets/images/goods_img.png';
 
 const BooksManageList = () => {
   const books = useSelector((state: RootState) => state.books)

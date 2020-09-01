@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.less';
-import BackImg from 'images/back.png';
+import BackImg from '@assets/images/back.png';
 
 export const Header = (props: HeaderProps) => {
   const {

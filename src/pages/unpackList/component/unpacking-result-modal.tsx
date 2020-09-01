@@ -6,7 +6,7 @@ import { RootState } from '../../../store';
 import { setShowResultModal } from '../store';
 import './unpcking-result-modal.less';
 
-import finshIcon from 'images/finsh_icon.png';
+import finshIcon from '@assets/images/finsh_icon.png';
 
 const unpackingResultModal = () => {
   const {showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks)

@@ -37,8 +37,11 @@ module.exports ={
     ]
   },
   resolve: {
-    modules: [path.resolve(__dirname, "src/assets"), "node_modules"],
+    modules: ["node_modules"],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    alias: {
+      "@assets": path.resolve(__dirname, "./src/assets"),
+    }
   },
   devtool: "source-map",
   plugins: [
