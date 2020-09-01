@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button } from 'antd-mobile';
 import './item.less';
-import { unpackGoods } from '../types';
+import { UnpackGoods } from '../types';
 
 import GoodsImg from '@assets/images/goods_img.png';
-import EditIcon from '@assets/images/edit.png';
+import DeleteIcon from '@assets/images/delete.png';
 
 const Item = (props: ItemProps) => {
-  const { data, toUnpackPackage } = props;
+  const { data, toUnpackPackage, toDel } = props;
   const { mainGoodsInfo, subGoodsInfo, proportion } = data || {}
+
 
   const renderMainGoods = () => {
     return (
@@ -18,7 +19,7 @@ const Item = (props: ItemProps) => {
           <div className="goods_name row">
               <div className="goods_name_txt row">{mainGoodsInfo.goodsName}</div>
               <div className="edit_container row">
-                <img className="edit_icon" src={EditIcon}/>
+                <img onClick={()=> toDel()} className="edit_icon" src={DeleteIcon}/>
               </div>
           </div>
           <div className="barCode">条形码: {mainGoodsInfo.barCode}</div>
@@ -60,9 +61,10 @@ const Item = (props: ItemProps) => {
   )
 }
 export type ItemProps = {
-  data: unpackGoods,
+  data: UnpackGoods,
   sectionID: string | number,
   rowID: string | number,
-  toUnpackPackage: Function
+  toUnpackPackage: Function,
+  toDel: Function
 }
 export default Item;

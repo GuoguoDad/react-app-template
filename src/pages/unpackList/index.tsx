@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ListView, PullToRefresh } from 'antd-mobile';
+import { ListView, PullToRefresh, Modal } from 'antd-mobile';
 import { useRequest } from 'ahooks';
 import './index.less';
 
@@ -8,11 +8,12 @@ import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store';
 import { Header, SearchScanBar } from '../../components';
 import { queryUnpackListAsync } from './actor';
 import { RootState } from '../../store';
-import { unpackGoods } from './types';
+import { UnpackGoods } from './types';
 import Item from './component/item';
 import UnpackingModal from './component/unpacking-popup-modal';
 import ResultModal from './component/unpacking-result-modal';
 
+const alert = Modal.alert;
 const MyPullToRefresh: any = PullToRefresh;
 
 const ListContainer = (props: { children?: ReactNode }) => {
@@ -57,12 +58,26 @@ const unpackList = () => {
     setHeight(height)
   })
 
-  const row = (rowData: unpackGoods, sectionID: string | number, rowID: string | number) => {
+
+  const toDel = () => {
+    alert('删除配比关系', '请确认是否删除配比关系？', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      {
+        text: '确定',
+        onPress: () => {
+
+        }
+      }
+    ])
+  }
+
+  const row = (rowData: UnpackGoods, sectionID: string | number, rowID: string | number) => {
     return (
       <Item 
         data={rowData} 
         sectionID={sectionID} 
         rowID={rowID} 
+        toDel={()=> toDel()}
         toUnpackPackage={() => dispatch(setShowUnpackingModal({show: true, data: rowData}))}
       />
     );
@@ -94,7 +109,7 @@ const unpackList = () => {
     manual: true,
   });
 
-  const ds = new ListView.DataSource({ rowHasChanged: (r1: unpackGoods, r2: unpackGoods) => r1 !== r2 });
+  const ds = new ListView.DataSource({ rowHasChanged: (r1: UnpackGoods, r2: UnpackGoods) => r1 !== r2 });
 
   return (
     <>

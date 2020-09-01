@@ -7,7 +7,7 @@ export type Goods = {
   retailPrice: number; //价格
 }
 
-export type unpackGoods = {
+export type UnpackGoods = {
   ruleId: string;
   mainGoodsInfo: Goods, //大包装商品
   subGoodsInfo: Goods, //小包商品
@@ -15,8 +15,8 @@ export type unpackGoods = {
   type: number; // 1-标品，2-计件
 }
 
-export type unpackGoodsPageList = {
-  dataList: Array<unpackGoods>,
+export type UnpackGoodsPageList = {
+  dataList: Array<UnpackGoods>,
   totalCount: number,
   totalPageCount: number
 }
@@ -26,12 +26,12 @@ export interface PageParam {
   pageSize: number;
 }
 
-export interface queryListParam extends PageParam {
+export interface QueryListParam extends PageParam {
   storeCode: string;
   keyWord?: string;
 }
 
-export interface submitUnpackingParam {
+export interface SubmitUnpackingParam {
   storeCode: string;
   mainGoodsCode: string;
   subGoodsCode: string;

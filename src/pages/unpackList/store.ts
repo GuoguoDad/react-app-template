@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { extraReducers } from './extra-reducer';
-import { unpackGoods } from './types';
+import { UnpackGoods } from './types';
 
 export interface UnpackingState {
-  dataList: unpackGoods[]; //拆包关系列表数据
+  dataList: UnpackGoods[]; //拆包关系列表数据
   keywork: string; //搜索关键词
   currentPage: number; //当前页码
   isLoading: boolean; //是否加载中
@@ -11,7 +11,7 @@ export interface UnpackingState {
   hasMore: boolean;//是否有更多数据
 
   showUnpackingModal: boolean; //是否显示拆包底部弹窗
-  unpackingModalData: unpackGoods;//当前正在拆包的数据
+  unpackingModalData: UnpackGoods;//当前正在拆包的数据
   unpackingFlag: string; //防止拆包重复点击flag
   currentRequestId: string;//防止拆包重复点击reqId
 
@@ -29,7 +29,7 @@ const initialState: UnpackingState = {
   hasMore: true,
 
   showUnpackingModal: false,
-  unpackingModalData: {} as unpackGoods,
+  unpackingModalData: {} as UnpackGoods,
   unpackingFlag: 'idle',
   currentRequestId: '',
   
@@ -52,10 +52,10 @@ export const unpackListSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-    setShowUnpackingModal: (state, action: PayloadAction<{show: boolean, data?: unpackGoods}>) => {
+    setShowUnpackingModal: (state, action: PayloadAction<{show: boolean, data?: UnpackGoods}>) => {
       const { show, data } = action.payload
       state.showUnpackingModal = show
-      state.unpackingModalData = data || {} as unpackGoods
+      state.unpackingModalData = data || {} as UnpackGoods
     },
     setShowResultModal: (state, action: PayloadAction<boolean>) => {
       state.showUnpackingResultModal = action.payload

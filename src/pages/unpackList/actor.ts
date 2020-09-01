@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { queryUnpackListByPage, submitUnpacking } from './webapi';
-import { unpackGoodsPageList, queryListParam, submitUnpackingParam } from './types';
+import { UnpackGoodsPageList, QueryListParam, SubmitUnpackingParam } from './types';
 
-export const queryUnpackListAsync = createAsyncThunk<unpackGoodsPageList, queryListParam, { state: RootState }>(
+export const queryUnpackListAsync = createAsyncThunk<UnpackGoodsPageList, QueryListParam, { state: RootState }>(
   'qeryUnpackList',
   async (params) => {
     const { data } = await queryUnpackListByPage(params)
@@ -11,7 +11,7 @@ export const queryUnpackListAsync = createAsyncThunk<unpackGoodsPageList, queryL
   }
 )
 
-export const submitUnpackPackageAsync = createAsyncThunk<string,  submitUnpackingParam, {state: RootState}> (
+export const submitUnpackPackageAsync = createAsyncThunk<string,  SubmitUnpackingParam, {state: RootState}> (
   'submitUnpackPackage',
   async (params, { getState, requestId, rejectWithValue }) => {
     const { unpackingFlag, currentRequestId } = getState().unpacks
