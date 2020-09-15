@@ -57,6 +57,15 @@ module.exports ={
     })
   ],
   optimization: {
+    splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+            vendors: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors'
+            }
+        }
+    },
     minimizer: [
       new TerserPlugin(),
       new UglifyJsPlugin({
@@ -68,6 +77,6 @@ module.exports ={
         }
       }),
       new OptimizeCSSAssetsPlugin()
-    ],
-  },
+    ]
+  }
 }

@@ -1,36 +1,49 @@
-.separatorLine {
-  background-color: #F5F5F9;
-  height: 8px;
-  border-top: 1px solid #ECECED;
-  border-bottom: 1px solid #ECECED;
+html,body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
-.item {
-  padding: 0 15px
+.am-list-body {
+  border: none;
 }
 
-.bookName {
-  line-height: 50px;
-  color: #888;
-  font-size: 18;
-  border-bottom: 1px solid #F6F6F6;
-}
+.listContainer {
+  width: 100%;
+  height: calc(100% - 0.88rem);
+  
+  .list-view-container {
+    overflow: auto;
+  }
 
-.author {
-  display: flex;
-  padding: 15px 0;
-}
+  .item {
+    padding: 0 15px;
+    border-bottom: 1px solid #ECECED;
+  }
 
-.bottomView {
-  line-height: 1;
-}
+  .bookName {
+    line-height: 50px;
+    color: #888;
+    font-size: 18;
+    border-bottom: 1px solid #F6F6F6;
+  }
 
-.authorTxt {
-  margin-bottom: 8px;
-  font-weight: 'bold'
-}
+  .author {
+    display: flex;
+    padding: 15px 0;
+  }
 
-.price {
-  font-size: 30px;
-  color: #FF6E27
+  .bottomView {
+    line-height: 1;
+  }
+
+  .authorTxt {
+    margin-bottom: 8px;
+    font-weight: 'bold'
+  }
+
+  .price {
+    font-size: 30px;
+    color: #FF6E27
+  }
 }

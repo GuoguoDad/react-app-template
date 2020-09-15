@@ -9,26 +9,23 @@ import { Book } from './webapi';
 import styles from './books.module.less';
 
 import GoodsImg from '@assets/images/goods_img.png';
+import { Header, ListContainer } from '../../components';
 
 const BooksManageList = () => {
   const books = useSelector((state: RootState) => state.books)
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  const queryPageList = (pageNun: number) => {
     const params= {
-      pageNo: 1,
+      pageNo: pageNun,
       pageSize: 10
     }
     dispatch(queryBooksByPageAsync(params))
+  }
+
+  useEffect(()=>{
+    queryPageList(1)
   },[])
-
-
-  const separator = (sectionID: string | number, rowID: string | number) => (
-    <div
-      key={`${sectionID}-${rowID}`}
-      className={styles.separatorLine}
-    />
-  );
 
   const row = (rowData: Book, sectionID: string | number, rowID: string | number) => {
     const { bookName, author, price } = rowData;
@@ -61,20 +58,29 @@ const BooksManageList = () => {
   const dataSource = convertData(books)
 
   return (
-    <ListView
-      dataSource={dataSource}
-      renderHeader={() => <span>header</span>}
-      renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-        {books.isLoading ? 'Loading...' : 'Loaded'}
-      </div>)}
-      renderRow={row}
-      renderSeparator={separator}
-      className="am-list"
-      useBodyScroll
-      onScroll={() => { console.log('scroll'); }}
-      scrollRenderAheadDistance={500}
-      onEndReachedThreshold={10}
-    />
+    <>
+    <Header
+        hasBack={false}
+        showRight={false}
+        title = 'DEMO'
+      />
+    <div className={styles.listContainer}>
+      <ListView
+        dataSource={dataSource}
+        initialListSize = {10}
+        style={{ height: '100%' }}
+        renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+          {books.isLoading ? 'Loading...' : 'Loaded'}
+        </div>)}
+        renderRow={row}
+        className="list-view-container"
+        onEndReached={()=> queryPageList(1)}
+        renderBodyComponent={() => <ListContainer />}
+        scrollRenderAheadDistance={500}
+        onEndReachedThreshold={10}
+      />
+    </div>
+    </>
   )
 }
 

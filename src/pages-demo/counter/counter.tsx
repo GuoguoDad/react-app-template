@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, batch } from 'react-redux';
 import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice';
-import { RootState } from '../../store';
+import { RootState, AppDispatch } from '../../store';
 import styles from './Counter.module.less';
 
 const Counter = () => {
   const { value } = useSelector((state: RootState)=> state.counter);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState<number>(2);
 
   return (
@@ -14,8 +14,16 @@ const Counter = () => {
       <div className={styles.row}>
         <button
           className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          aria-label="批量"
+          onClick={() => {
+            batch(()=>{
+              dispatch(increment())
+              dispatch(increment())
+              dispatch(increment())
+              dispatch(increment())
+              dispatch(increment())
+            })
+          }}
         >
           +
         </button>

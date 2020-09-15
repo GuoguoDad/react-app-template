@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-
-interface CounterState {
-  value: number;
-  loading: string;
-  currentRequestId: string;
-  errMessage: string;
-}
+import { CounterState } from './types';
 
 const initialState: CounterState = {
   value: 0,
