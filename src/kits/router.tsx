@@ -40,6 +40,7 @@ window.Argo = {
 };
 const hashHistory = createHashHistory();
 
+//@ts-ignore
 const renderRoutes = routes => props => {
   const [pathname, setPathname] = useState('');
 

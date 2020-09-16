@@ -73,9 +73,7 @@ const BooksManageList = () => {
           {books.isLoading ? 'Loading...' : 'Loaded'}
         </div>)}
         renderRow={row}
-        className="list-view-container"
         onEndReached={()=> queryPageList(1)}
-        renderBodyComponent={() => <ListContainer />}
         scrollRenderAheadDistance={500}
         onEndReachedThreshold={10}
       />

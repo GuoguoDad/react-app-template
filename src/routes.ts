@@ -1,10 +1,11 @@
-import { Router } from './kits';
+import { Router, Loadable } from './kits';
 //demo begin
-import Counter from './pages-demo/counter/counter';
-import BooksManageList from './pages-demo/books/index';
+const Counter = Loadable(() => import('./pages-demo/counter/counter'));
+const BooksManageList = Loadable(() => import('./pages-demo/books/index'));
+
 //page begin
-import UnpackList from './pages/unpackList';
-import GoodsList from './pages/goodsList';
+const UnpackList = Loadable(() => import('./pages/unpackList'));
+const GoodsList = Loadable(() => import('./pages/goodsList'));
 
 const routes = [
   {

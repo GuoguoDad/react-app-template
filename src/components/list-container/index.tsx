@@ -3,7 +3,7 @@ import './index.less';
 
 export const ListContainer = (props: { children?: ReactNode }) => {
   return (
-    <div className="am-list-body my-body">
+    <div className="list-body">
       {props.children}
     </div>
   );

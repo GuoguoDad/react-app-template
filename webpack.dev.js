@@ -47,6 +47,17 @@ module.exports ={
         template: './index.html'
     })
   ],
+  optimization: {
+    splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+            vendors: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors'
+            }
+        }
+    }
+  },
   devServer: {
     port: 8080,
     disableHostCheck: true
