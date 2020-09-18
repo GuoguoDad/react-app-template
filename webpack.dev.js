@@ -44,7 +44,7 @@ module.exports ={
     new HtmlWebpackPlugin({
         title: 'fe-app',
         filename: 'index.html',
-        template: './index.html'
+        template: './index.ejs'
     })
   ],
   optimization: {
