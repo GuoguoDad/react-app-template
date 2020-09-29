@@ -10,7 +10,6 @@ var Random = MockLite.Random;
 var template = fs.readFileSync(path.join(__dirname, 'doc.html'), 'utf8');
 var RE = /^\s*\/\*[*\s]+?([^\r\n]+)[\s\S]+?@url\s+([^\n]+)[\s\S]+?\*\//im;
 
-
 function mock(dir) {
     var routes = {};
 

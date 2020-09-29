@@ -7,7 +7,7 @@ const middleware = getDefaultMiddleware().concat(logger);
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware,
+  middleware: middleware,
   devTools: process.env.NODE_ENV !== 'production',
   enhancers: [reduxBatch]
 })

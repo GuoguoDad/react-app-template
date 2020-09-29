@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -11,7 +12,7 @@ module.exports ={
   },
   output: {
     path: path.resolve(__dirname + "/dist"),
-    filename: "bundle-[name]-[hash:5].js",
+    filename: "js/bundle-[name]-[hash:5].js",
     chunkFilename: "bundle-[name]-[hash:5].js"
   },
   module: {
@@ -46,6 +47,7 @@ module.exports ={
   },
   devtool: "source-map",
   plugins: [
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[hash:5].css',
       chunkFilename: '[name]-[hash:5].css',
@@ -58,13 +60,12 @@ module.exports ={
   ],
   optimization: {
     splitChunks: {
-        chunks: "all",
-        cacheGroups: {
-            vendors: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendors'
-            }
+      cacheGroups: {
+        commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
         }
+      }
     },
     minimizer: [
       new TerserPlugin(),
