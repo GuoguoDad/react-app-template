@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "mock": "nodemon ./mocks/index.js",
-    "dev": "./node_modules/.bin/webpack-dev-server --mode=development --config webpack.dev.js --progress",
-    "build": "rimraf ./dist/* && ./node_modules/.bin/webpack --mode=production --config webpack.prod.js --progress"
+    "dev": "cross-env NODE_ENV=development && webpack-dev-server --config webpack.dev.js --progress",
+    "build": "rimraf ./dist/* && cross-env NODE_ENV=production && webpack --config webpack.prod.js --progress"
   },
   "dependencies": {
     "@manaflair/redux-batch": "^1.0.0",

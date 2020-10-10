@@ -1,85 +1,71 @@
-const path = require("path");
-const utils = require("./utils");
+const { merge } = require("webpack-merge");
+const baseWebpackConfig = require("./webpack.base");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports ={
+module.exports = merge(baseWebpackConfig,{
   entry: {
     app: "./src/index.tsx"
   },
-  output: {
-    path: utils.resolve("./dist"),
-    filename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
-    chunkFilename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
-    publicPath: "/"
-  },
-  module: {
-    rules: [
-        {
-            test: /\.(ts|tsx)$/,
-            exclude: /node_modules/,
-            use: [
-                'babel-loader',
-                {
-                    loader: 'ts-loader',
-                    options: {
-                      transpileOnly: true
-                    }
-                }
-            ]
-        },
-        { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
-        { test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }] },
-        { test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "less-loader" }] },
-        { test: /\.html$/, use: { loader: 'html-loader' }},
-        { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: utils.assetsPath("img/[name].[hash:5].[ext]"), limit: 1024 }}] }
-    ]
-  },
-  resolve: {
-    modules: ["node_modules"],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-    alias: {
-      "@kits": path.resolve(__dirname, "./src/kits"),
-      "@assets": path.resolve(__dirname, "./src/assets"),
-    }
-  },
-  devtool: "source-map",
+  devtool: false,
   plugins: [
-    new BundleAnalyzerPlugin(),
-    new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name]-[hash:5].css'),
-      chunkFilename: utils.assetsPath('css/[name]-[hash:5].css'),
-    }),
     new HtmlWebpackPlugin({
-        title: 'fe-app',
-        filename: 'index.html',
-        template: './index.ejs'
-    })
+      title: 'fe-app',
+      filename: 'index.html',
+      template: './index.ejs',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      }
+    }),
+    // new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {
+      chunks: "all",
+      automaticNameDelimiter: '-',
       cacheGroups: {
-        commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
+        basic: {
+          priority: 3, 
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|axios)[\\/]/,
+        },
+        vendors: {
+          priority: -10, 
+          test: /[\\/]node_modules[\\/]/
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
         }
       }
     },
     minimizer: [
       new TerserPlugin(),
       new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions:{
-          warnings: false,
-          compress: true
-        }
+          parallel: true,
+          sourceMap: false,
+          uglifyOptions: {
+              warnings: false,
+              compress: {
+                  unused: true,
+                  drop_debugger: true,
+                  drop_console: true, 
+              },
+              output: {
+                  comments: false
+              }
+          }
       }),
-      new OptimizeCSSAssetsPlugin()
+      new OptimizeCSSAssetsPlugin({
+          cssProcessorOptions: { 
+              discardComments: { removeAll: true }
+          } 
+      })
     ]
   }
-}
+})

@@ -6,8 +6,7 @@ module.exports = {
     output: {
       path: utils.resolve("./dist"),
       filename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
-      chunkFilename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
-      publicPath: "/"
+      chunkFilename: utils.assetsPath("js/bundle-[name]-[hash:5].js")
     },
     module: {
       rules: [
