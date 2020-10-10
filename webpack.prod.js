@@ -1,4 +1,5 @@
 const path = require("path");
+const utils = require("./utils");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -11,9 +12,10 @@ module.exports ={
     app: "./src/index.tsx"
   },
   output: {
-    path: path.resolve(__dirname + "/dist"),
-    filename: "js/bundle-[name]-[hash:5].js",
-    chunkFilename: "bundle-[name]-[hash:5].js"
+    path: utils.resolve("./dist"),
+    filename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
+    chunkFilename: utils.assetsPath("js/bundle-[name]-[hash:5].js"),
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -31,10 +33,10 @@ module.exports ={
             ]
         },
         { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader?cacheDirectory=true" },
-        { test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader, options: { publicPath: '../'}}, { loader: "css-loader" }] },
-        { test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader, options: { publicPath: '../'}}, { loader: "css-loader" }, { loader: "less-loader" }] },
+        { test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }] },
+        { test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "less-loader" }] },
         { test: /\.html$/, use: { loader: 'html-loader' }},
-        { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: "img/[name].[hash:5].[ext]", limit: 1024 ,publicPath: "../" }}] }
+        { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: utils.assetsPath("img/[name].[hash:5].[ext]"), limit: 1024 }}] }
     ]
   },
   resolve: {
@@ -49,8 +51,8 @@ module.exports ={
   plugins: [
     new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name]-[hash:5].css',
-      chunkFilename: '[name]-[hash:5].css',
+      filename: utils.assetsPath('css/[name]-[hash:5].css'),
+      chunkFilename: utils.assetsPath('css/[name]-[hash:5].css'),
     }),
     new HtmlWebpackPlugin({
         title: 'fe-app',
