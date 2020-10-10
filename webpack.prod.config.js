@@ -1,5 +1,5 @@
 const { merge } = require("webpack-merge");
-const baseWebpackConfig = require("./webpack.base");
+const baseWebpackConfig = require("./webpack.base.config");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
@@ -15,14 +15,14 @@ module.exports = merge(baseWebpackConfig,{
     new HtmlWebpackPlugin({
       title: 'fe-app',
       filename: 'index.html',
-      template: './index.ejs',
+      template: './public/index.ejs',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
       }
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {

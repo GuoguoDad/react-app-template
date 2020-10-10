@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 //通用的过场组件
 const loadingComponent= () =>{
     return (
-        <div>loading</div>
+        <div></div>
     ) 
 }
 
@@ -12,6 +12,7 @@ const loadingComponent= () =>{
 export default (loader: () => Promise<any>,loading = loadingComponent)=>{
     return Loadable({
         loader,
-        loading
+        loading,
+        delay: 2000
     });
 }

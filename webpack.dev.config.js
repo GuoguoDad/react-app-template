@@ -1,5 +1,5 @@
 const { merge } = require("webpack-merge");
-const baseWebpackConfig = require("./webpack.base");
+const baseWebpackConfig = require("./webpack.base.config");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig, {
@@ -9,7 +9,7 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       title: 'fe-app',
       filename: 'index.html',
-      template: './index.ejs'
+      template: './public/index.ejs'
     })
   ],
   devServer: {
