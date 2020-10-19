@@ -30,11 +30,11 @@ module.exports = merge(baseWebpackConfig,{
       automaticNameDelimiter: '-',
       cacheGroups: {
         basic: {
-          priority: 3, 
+          priority: 3,
           test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|axios)[\\/]/,
         },
         vendors: {
-          priority: -10, 
+          priority: -10,
           test: /[\\/]node_modules[\\/]/
         },
         default: {
@@ -45,7 +45,7 @@ module.exports = merge(baseWebpackConfig,{
       }
     },
     minimizer: [
-      new TerserPlugin(),
+      new TerserPlugin(),//UglifyJsPlugin压缩js不支持es6，通过TerserPlugin转
       new UglifyJsPlugin({
           parallel: true,
           sourceMap: false,
@@ -54,7 +54,7 @@ module.exports = merge(baseWebpackConfig,{
               compress: {
                   unused: true,
                   drop_debugger: true,
-                  drop_console: true, 
+                  drop_console: true,
               },
               output: {
                   comments: false
@@ -62,9 +62,9 @@ module.exports = merge(baseWebpackConfig,{
           }
       }),
       new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: { 
+          cssProcessorOptions: {
               discardComments: { removeAll: true }
-          } 
+          }
       })
     ]
   }
