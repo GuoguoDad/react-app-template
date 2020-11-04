@@ -17,7 +17,6 @@ module.exports = merge(baseWebpackConfig, {
     })
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     port: 8080,
     disableHostCheck: true,
     proxy: {

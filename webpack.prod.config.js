@@ -22,17 +22,18 @@ module.exports = merge(baseWebpackConfig,{
         removeAttributeQuotes: true
       }
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {
+      chunks: 'all',
       automaticNameDelimiter: '-',
       cacheGroups: {
         basic: {
           priority: 3,
           test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|axios)[\\/]/,
         },
-        vendors: {
+        defaultVendors: {
           priority: -10,
           test: /[\\/]node_modules[\\/]/
         },
@@ -45,7 +46,14 @@ module.exports = merge(baseWebpackConfig,{
     },
     minimize: true,
     minimizer: [
-      new TerserPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true
+          }
+        }
+      }),
       new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
               discardComments: { removeAll: true }

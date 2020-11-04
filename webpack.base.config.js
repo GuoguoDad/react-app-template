@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     output: {
       path: utils.resolve("./dist"),
-      filename: utils.assetsPath("js/bundle-[name]-[hash].js"),
-      chunkFilename: utils.assetsPath("js/bundle-[name]-[hash].js"),
+      filename: utils.assetsPath("js/bundle-[name]-[contenthash:5].js"),
+      chunkFilename: utils.assetsPath("js/bundle-[name]-[contenthash:5].js"),
     },
     module: {
       rules: [
@@ -28,7 +28,7 @@ module.exports = {
           { test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }] },
           { test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "less-loader" }] },
           { test: /\.html$/, use: { loader: 'html-loader' }},
-          { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: utils.assetsPath("img/[name].[hash].[ext]"), limit: 1024 }}] }
+          { test: /\.(png|gif|svg)$/, use: [{ loader: 'url-loader', options: { name: utils.assetsPath("img/[name].[contenthash:5].[ext]"), limit: 1024 }}] }
       ]
     },
     resolve: {
@@ -49,8 +49,8 @@ module.exports = {
         ]
       }),
       new MiniCssExtractPlugin({
-        filename: utils.assetsPath('css/[name]-[hash].css'),
-        chunkFilename: utils.assetsPath('css/[name]-[hash].css'),
+        filename: utils.assetsPath('css/[name]-[contenthash:5].css'),
+        chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       })
     ]
 }
