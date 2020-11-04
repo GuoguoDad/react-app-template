@@ -1,10 +1,14 @@
 const { merge } = require("webpack-merge");
 const baseWebpackConfig = require("./webpack.base.config");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
 
 module.exports = merge(baseWebpackConfig, {
   mode:"development",
-  devtool: '#eval-source-map',
+  entry: {
+    app: "./src/index.tsx"
+  },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'fe-app',
@@ -13,6 +17,7 @@ module.exports = merge(baseWebpackConfig, {
     })
   ],
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     port: 8080,
     disableHostCheck: true,
     proxy: {

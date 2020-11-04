@@ -3,10 +3,10 @@ const baseWebpackConfig = require("./webpack.base.config");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig,{
+  mode:"production",
   entry: {
     app: "./src/index.tsx"
   },
@@ -22,11 +22,10 @@ module.exports = merge(baseWebpackConfig,{
         removeAttributeQuotes: true
       }
     }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {
-      chunks: "all",
       automaticNameDelimiter: '-',
       cacheGroups: {
         basic: {
@@ -44,23 +43,9 @@ module.exports = merge(baseWebpackConfig,{
         }
       }
     },
+    minimize: true,
     minimizer: [
-      new TerserPlugin(),//UglifyJsPlugin压缩js不支持es6，通过TerserPlugin转
-      new UglifyJsPlugin({
-          parallel: true,
-          sourceMap: false,
-          uglifyOptions: {
-              warnings: false,
-              compress: {
-                  unused: true,
-                  drop_debugger: true,
-                  drop_console: true,
-              },
-              output: {
-                  comments: false
-              }
-          }
-      }),
+      new TerserPlugin(),
       new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
               discardComments: { removeAll: true }
