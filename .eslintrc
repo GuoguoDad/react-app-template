@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "class-methods-use-this": 0,
+    "import/no-named-as-default": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "react/jsx-filename-extension": 0,
+    "no-param-reassign": 0,
+    "no-unused-expressions": 0,
+    "jsx-a11y/alt-text": 0,
+    "no-shadow": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "no-use-before-define": 0,
+    "react/button-has-type": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "import/prefer-default-export": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "import/order": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/require-default-props": 0,
+    "react/destructuring-assignment": 0,
+    "no-nested-ternary": 0,
+    "no-console": 0,
+    "no-sequences": 0,
+    "no-multi-assign": 0
+  }
+}

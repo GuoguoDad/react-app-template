@@ -10,8 +10,8 @@ instance.defaults.headers['Content-Type'] = 'application/json';
 instance.defaults.headers.Accept = 'application/json';
 // WARN 使用拦截器当时候 要注意 拦截器先后顺序，会影响返回结果
 // dev 模式下记录 http 日志
-if (process.env.NODE_ENV === "development") {
-    instance.interceptors.response.use(...ResponseLogInterceptor);
+if (process.env.NODE_ENV === 'development') {
+  instance.interceptors.response.use(...ResponseLogInterceptor);
 }
 // 鉴权拦截器
 instance.interceptors.response.use(...AuthInterceptor);
@@ -22,16 +22,17 @@ instance.interceptors.response.use(...ErrorResponseInterceptor);
 instance.interceptors.request.use(...TokenInjectRequestInterceptor);
 
 const Fetch = {
-    get: <T = any>(url: string, config?: AxiosRequestConfig) => {
-        return instance.get<BetaBaseResponse<T>>(url, { ...config })
-            .then(res => res.data);
-    },
-    post: <T = any>(url: string, data: any = {}, config?: AxiosRequestConfig) => {
-        return instance.post<BetaBaseResponse<T>>(url, data, { ...config })
-            .then(res => res.data);
-    },
-    request: <T = any>(config: AxiosRequestConfig) =>
-        instance.request<BetaBaseResponse<T>>({ ...config })
+  get: <T = any>(url: string, config?: AxiosRequestConfig) => {
+    return instance
+      .get<BetaBaseResponse<T>>(url, { ...config })
+      .then((res) => res.data);
+  },
+  post: <T = any>(url: string, data: any = {}, config?: AxiosRequestConfig) => {
+    return instance
+      .post<BetaBaseResponse<T>>(url, data, { ...config })
+      .then((res) => res.data);
+  },
+  request: <T = any>(config: AxiosRequestConfig) => instance.request<BetaBaseResponse<T>>({ ...config }),
 };
 
 export default Fetch;

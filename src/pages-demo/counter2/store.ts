@@ -4,9 +4,7 @@ import logger from 'redux-logger';
 
 import reducer from './reducer';
 
-//@ts-ignore
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default createStore(reducer, /* preloadedState, */ composeEnhancers(
-    applyMiddleware(thunk, logger)
-));
+export default createStore(reducer, /* preloadedState, */ composeEnhancers(applyMiddleware(thunk, logger)));

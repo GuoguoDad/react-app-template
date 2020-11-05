@@ -9,10 +9,10 @@ import { store } from './store';
 import Routes from './routes';
 
 ReactDOM.render(
-  <React.Fragment>
+  <>
     <Provider store={store}>
       <Routes />
     </Provider>
-  </React.Fragment>,
-  document.getElementById('root')
+  </>,
+  document.getElementById('root'),
 );

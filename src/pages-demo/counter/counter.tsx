@@ -5,7 +5,7 @@ import { RootState, AppDispatch } from '../../store';
 import styles from './Counter.module.less';
 
 const Counter = () => {
-  const { value } = useSelector((state: RootState)=> state.counter);
+  const { value } = useSelector((state: RootState) => state.counter);
   const dispatch: AppDispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState<number>(2);
 
@@ -16,13 +16,13 @@ const Counter = () => {
           className={styles.button}
           aria-label="批量"
           onClick={() => {
-            batch(()=>{
-              dispatch(increment())
-              dispatch(increment())
-              dispatch(increment())
-              dispatch(increment())
-              dispatch(increment())
-            })
+            batch(() => {
+              dispatch(increment());
+              dispatch(increment());
+              dispatch(increment());
+              dispatch(increment());
+              dispatch(increment());
+            });
           }}
         >
           +
@@ -32,7 +32,7 @@ const Counter = () => {
           className={styles.button}
           aria-label="Decrement value"
           onClick={() => {
-            dispatch(decrement())
+            dispatch(decrement());
           }}
         >
           -
@@ -43,25 +43,17 @@ const Counter = () => {
           className={styles.textbox}
           aria-label="Set increment amount"
           value={incrementAmount}
-          onChange={e => setIncrementAmount(Number(e.target.value))}
+          onChange={(e) => setIncrementAmount(Number(e.target.value))}
         />
-        <button
-          className={styles.button}
-          onClick={() =>
-            dispatch(incrementByAmount(Number(incrementAmount) || 0))
-          }
-        >
+        <button className={styles.button} onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>
           Add Amount
         </button>
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
+        <button className={styles.asyncButton} onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
           Add Async
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default Counter;

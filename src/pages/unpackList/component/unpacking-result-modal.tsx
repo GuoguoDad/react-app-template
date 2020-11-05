@@ -9,51 +9,52 @@ import './unpcking-result-modal.less';
 import finshIcon from '@assets/images/finsh_icon.png';
 
 const unpackingResultModal = () => {
-  const {showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks)
+  const { showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks);
 
   const dispatch = useDispatch();
 
   const close = () => {
-    dispatch(setShowResultModal(false))
-  }
+    dispatch(setShowResultModal(false));
+  };
 
   const renderHeader = () => {
     return (
       <div className="header">
-        <div className="item center"></div>
-        <div className="middle center">
-        </div>
-        <div onClick={()=> close()} className="item center">
+        <div className="item center" />
+        <div className="middle center" />
+        <div onClick={() => close()} className="item center">
           <a>关闭</a>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const toUnpacking = () => {
-    close()
-  } 
+    close();
+  };
 
   return (
     <Modal
       popup
       visible={showUnpackingResultModal}
-      onClose={()=> close()}
+      onClose={() => close()}
       animationType="slide-up"
       className="unpacking-result-container"
     >
       {renderHeader()}
       <div className="content-tips center">
-        <img className="finsh-img" src={finshIcon}/>
-        <span className="finsh-txt">{unpackingSuccess ? '拆包完成': '拆包失败'}</span>
+        <img className="finsh-img" src={finshIcon} />
+        <span className="finsh-txt">{unpackingSuccess ? '拆包完成' : '拆包失败'}</span>
       </div>
-      <Button onClick={() => toUnpacking()} className="sure-btn" type="primary">继续拆包</Button>
+      <Button onClick={() => toUnpacking()} className="sure-btn" type="primary">
+        继续拆包
+      </Button>
     </Modal>
-  )
-}
+  );
+};
 
 export type PopupProps = {
-  visible: boolean
-}
+  visible: boolean;
+};
 
-export default unpackingResultModal
+export default unpackingResultModal;

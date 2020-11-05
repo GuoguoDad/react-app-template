@@ -1,6 +1,6 @@
 export interface CounterState {
-    value: number;
-    loading: string;
-    currentRequestId: string;
-    errMessage: string;
+  value: number;
+  loading: string;
+  currentRequestId: string;
+  errMessage: string;
 }

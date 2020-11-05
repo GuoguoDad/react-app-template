@@ -7,7 +7,7 @@ import { GoodsList, QueryListParam } from './types';
 export const queryStoreGoodsListAsync = createAsyncThunk<GoodsList, QueryListParam, { state: RootState }>(
   'qeryUnpackList',
   async (params) => {
-    const { data } = await queryStoreGoodsList(params)
+    const { data } = await queryStoreGoodsList(params);
     return data;
-  }
-)
+  },
+);

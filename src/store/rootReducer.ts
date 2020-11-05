@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   counter: counterReducer,
   books: booksReducer,
   unpacks: unpackListReducer,
-  goods: goodsListReducer
-})
+  goods: goodsListReducer,
+});
 
-export default rootReducer
+export default rootReducer;

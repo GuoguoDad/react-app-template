@@ -5,59 +5,51 @@ import DelIcon from '@assets/images/del.png';
 import './index.less';
 
 export const SearchScanBar = (props: SearchScanBarProps) => {
+  const { placeholder, onChange = () => {}, maxLength, onScanClick = () => {} } = props;
 
-  const { 
-    placeholder, 
-    onChange = () => {}, 
-    maxLength,
-    onScanClick = () => {}
-  } = props;
+  const [showDel, setShowDel] = useState<boolean>(false);
 
-  const [showDel, setShowDel ] = useState<boolean>(false)
-
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>('');
 
   const onChangeFun = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    onChange(value)
-    setValue(value)
-    if(value && !showDel) {
-      setShowDel(true)
-    }else if(!value && showDel) {
-      setShowDel(false)
+    const { value } = e.target;
+    onChange(value);
+    setValue(value);
+    if (value && !showDel) {
+      setShowDel(true);
+    } else if (!value && showDel) {
+      setShowDel(false);
     }
-  }
+  };
 
   const clearInput = () => {
-    setValue('')
-    setShowDel(false)
-    onChange('')
-  }
+    setValue('');
+    setShowDel(false);
+    onChange('');
+  };
 
   return (
     <div className="search-scan-bar center">
       <div className="bar-container">
-        <img className="icon" src={SearchIcon}/>
-        <input 
-          type="search" 
+        <img className="icon" src={SearchIcon} />
+        <input
+          type="search"
           value={value}
           className="bar-input"
           onChange={onChangeFun}
           placeholder={placeholder}
           maxLength={maxLength}
         />
-        {
-          showDel ? <img onClick={()=> clearInput()} className="del-icon" src={DelIcon}/> : null
-        }
-        <img onClick={()=> onScanClick()} className="icon" src={ScanIcon}/>
+        {showDel ? <img onClick={() => clearInput()} className="del-icon" src={DelIcon} /> : null}
+        <img onClick={() => onScanClick()} className="icon" src={ScanIcon} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export type SearchScanBarProps = {
   placeholder?: string;
   onChange?: Function;
   maxLength?: number;
   onScanClick?: Function;
-}
+};
