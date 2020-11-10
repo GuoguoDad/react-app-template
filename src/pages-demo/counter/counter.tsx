@@ -18,10 +18,6 @@ const Counter = () => {
           onClick={() => {
             batch(() => {
               dispatch(increment());
-              dispatch(increment());
-              dispatch(increment());
-              dispatch(increment());
-              dispatch(increment());
             });
           }}
         >
