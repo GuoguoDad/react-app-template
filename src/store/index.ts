@@ -13,5 +13,5 @@ export const store = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch;
-// eslint-disable-next-line no-undef
+
 export type RootState = ReturnType<typeof store.getState>;
