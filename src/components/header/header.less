@@ -1,11 +1,12 @@
 .com_header {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 0.88rem;
   background-color: white;
-  display: flex;
-  flex-direction: row;
 
-  .left,.right {
+  .left,
+  .right {
     width: 2rem;
     cursor: pointer;
   }
@@ -13,15 +14,15 @@
   .left {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .right {
+    padding-right: 0.3rem;
     font-family: PingFangSC-Regular;
     font-size: 0.32rem;
-    color: #108EE9;
-    padding-right: 0.3rem;
+    color: #108ee9;
   }
 
   .back_icon {
@@ -34,18 +35,18 @@
     flex: 1;
     font-family: PingFangSC-Medium;
     font-size: 0.36rem;
-    color: #000000;
+    color: #000;
   }
 
   .alignCenter {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
   }
-  
+
   .centerRight {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
   }
 }
