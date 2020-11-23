@@ -22,7 +22,7 @@ module.exports = merge(baseWebpackConfig, {
         removeAttributeQuotes: true,
       },
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
   optimization: {
     splitChunks: {
