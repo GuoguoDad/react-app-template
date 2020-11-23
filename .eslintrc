@@ -19,6 +19,7 @@
   "plugins": ["react", "react-hooks", "jsx-a11y", "import"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "class-methods-use-this": 0,
     "import/no-named-as-default": 0,
     "import/no-extraneous-dependencies": 0,
