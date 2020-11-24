@@ -11,7 +11,7 @@ import packageIcon from '@assets/images/package_icon.png';
 import subGoodsIcon from '@assets/images/subgoods_iocn.png';
 import ArrowDown from '@assets/images/arrow_down.png';
 
-const unpackingModal = () => {
+const UnpackingModal = () => {
   const { showUnpackingModal, unpackingModalData } = useSelector((state: RootState) => state.unpacks);
 
   const dispatch = useDispatch();
@@ -115,4 +115,4 @@ export type PopupProps = {
   visible: boolean;
 };
 
-export default unpackingModal;
+export default UnpackingModal;

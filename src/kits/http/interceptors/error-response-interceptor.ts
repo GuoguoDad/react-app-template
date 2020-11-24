@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { AxiosInterceptor } from './types';
-import { BetaBaseResponse } from '../response';
+import { BaseResponse } from '../response';
 
-export const ErrorResponseInterceptor: AxiosInterceptor<AxiosResponse<BetaBaseResponse<any>>> = [
+export const ErrorResponseInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<any>>> = [
   // @ts-ignore
   (res) => {
     // eslint-disable-next-line eqeqeq

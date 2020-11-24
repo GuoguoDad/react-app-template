@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { AxiosInterceptor } from './types';
-import { BetaBaseResponse } from '../response';
+import { BaseResponse } from '../response';
 
-export const ResponseLogInterceptor: AxiosInterceptor<AxiosResponse<BetaBaseResponse<any>>> = [
+export const ResponseLogInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<any>>> = [
   // @ts-ignore
   (res) => {
     console.log(`axios request url is ${res.config.url}`);

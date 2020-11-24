@@ -8,7 +8,7 @@ import './unpcking-result-modal.less';
 
 import finshIcon from '@assets/images/finsh_icon.png';
 
-const unpackingResultModal = () => {
+const UnpackingResultModal = () => {
   const { showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks);
 
   const dispatch = useDispatch();
@@ -57,4 +57,4 @@ export type PopupProps = {
   visible: boolean;
 };
 
-export default unpackingResultModal;
+export default UnpackingResultModal;

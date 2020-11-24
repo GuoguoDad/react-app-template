@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { BetaBaseResponse } from './response';
+import { BaseResponse } from './response';
 import { ResponseLogInterceptor } from './interceptors/response-log-interceptor';
 import { AuthInterceptor } from './interceptors/auth-intereceptor';
 import { ErrorResponseInterceptor } from './interceptors/error-response-interceptor';
@@ -24,15 +24,15 @@ instance.interceptors.request.use(...TokenInjectRequestInterceptor);
 const Fetch = {
   get: <T = any>(url: string, config?: AxiosRequestConfig) => {
     return instance
-      .get<BetaBaseResponse<T>>(url, { ...config })
+      .get<BaseResponse<T>>(url, { ...config })
       .then((res) => res.data);
   },
   post: <T = any>(url: string, data: any = {}, config?: AxiosRequestConfig) => {
     return instance
-      .post<BetaBaseResponse<T>>(url, data, { ...config })
+      .post<BaseResponse<T>>(url, data, { ...config })
       .then((res) => res.data);
   },
-  request: <T = any>(config: AxiosRequestConfig) => instance.request<BetaBaseResponse<T>>({ ...config }),
+  request: <T = any>(config: AxiosRequestConfig) => instance.request<BaseResponse<T>>({ ...config }),
 };
 
 export default Fetch;

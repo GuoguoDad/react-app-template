@@ -12,7 +12,7 @@ import { Goods } from './types';
 
 const MyPullToRefresh: any = PullToRefresh;
 
-const goodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
+const GoodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
   const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.goods);
 
   const dispatch = useDispatch();
@@ -93,4 +93,4 @@ const goodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
   );
 };
 
-export default goodsList;
+export default GoodsList;

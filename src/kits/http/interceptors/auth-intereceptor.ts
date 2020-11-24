@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { BetaBaseResponse } from '../response';
+import { BaseResponse } from '../response';
 import { AxiosInterceptor } from './types';
 
-export const AuthInterceptor: AxiosInterceptor<AxiosResponse<BetaBaseResponse<unknown>>> = [
+export const AuthInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<unknown>>> = [
   // @ts-ignore
   async (res) => {
     // console.log('res data redirect', res?.data?.redirect);

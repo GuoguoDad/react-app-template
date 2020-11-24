@@ -20,7 +20,7 @@ const ListContainer = (props: { children?: ReactNode }) => {
   return <div className="am-list-body my-body">{props.children}</div>;
 };
 
-const unpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
+const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
   const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.unpacks);
 
   const dispatch = useDispatch();
@@ -132,4 +132,4 @@ const unpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
     </>
   );
 };
-export default unpackList;
+export default UnpackList;
