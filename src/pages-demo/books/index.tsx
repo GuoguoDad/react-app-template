@@ -4,7 +4,7 @@ import { EntityState } from '@reduxjs/toolkit';
 import { ListView } from 'antd-mobile';
 
 import GoodsImg from '@assets/images/goods_img.png';
-import { queryBooksByPageAsync } from './booksSlice';
+import { queryBooksByPageAsync, bookAdd, bookEdit, delBook } from './booksSlice';
 import { RootState } from '../../store';
 import { Book } from './webapi';
 import styles from './books.module.less';
@@ -64,6 +64,43 @@ const BooksManageList = () => {
   return (
     <>
       <Header hasBack={false} showRight={false} title="DEMO" />
+      <div className={styles.operateArea}>
+        <button
+          onClick={() => {
+            dispatch(
+              bookAdd({
+                bookId: 'test',
+                bookName: 'test',
+                author: 'test',
+                price: 28,
+              }),
+            );
+          }}
+        >
+          add
+        </button>
+        <button
+          onClick={() => {
+            dispatch(
+              bookEdit({
+                id: 'test',
+                changes: {
+                  bookName: 'test2',
+                },
+              }),
+            );
+          }}
+        >
+          edit
+        </button>
+        <button
+          onClick={() => {
+            dispatch(delBook('test'));
+          }}
+        >
+          del
+        </button>
+      </div>
       <div className={styles.listContainer}>
         <ListView
           dataSource={dataSource}
@@ -73,7 +110,6 @@ const BooksManageList = () => {
             <div style={{ padding: 30, textAlign: 'center' }}>{books.isLoading ? 'Loading...' : 'Loaded'}</div>
           )}
           renderRow={row}
-          onEndReached={() => queryPageList(1)}
           scrollRenderAheadDistance={500}
           onEndReachedThreshold={10}
         />

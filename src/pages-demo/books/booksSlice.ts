@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter, PayloadAction, Update, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter, PayloadAction, Update, createAsyncThunk, EntityId } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 import { RootState } from '../../store';
@@ -10,7 +10,7 @@ export const booksAdapter = createEntityAdapter<Book>({
 });
 
 export const queryBooksByPageAsync = createAsyncThunk<Book[], PageParam, { state: RootState }>(
-  'add/books',
+  'query/books',
   async (params, { getState, requestId }) => {
     const { data } = await queryBooksByPage(params);
     return data;
@@ -28,7 +28,7 @@ export const booksSlice = createSlice({
         booksAdapter.addOne(state, action.payload);
       },
       prepare(text: Book) {
-        text.bookId = uuidv4();
+        // text.bookId = uuidv4();
         return {
           payload: text,
         };
@@ -36,6 +36,9 @@ export const booksSlice = createSlice({
     },
     bookEdit: (state, action: PayloadAction<Update<Book>>) => {
       booksAdapter.updateOne(state, action.payload);
+    },
+    delBook: (state, action: PayloadAction<EntityId>) => {
+      booksAdapter.removeOne(state, action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +55,6 @@ export const booksSlice = createSlice({
   },
 });
 
-export const { bookAdd, bookEdit } = booksSlice.actions;
+export const { bookAdd, bookEdit, delBook } = booksSlice.actions;
 
 export default booksSlice.reducer;
