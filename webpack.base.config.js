@@ -65,6 +65,7 @@ module.exports = {
     alias: {
       '@pages': path.resolve(__dirname, './src/pages'),
       '@comps': path.resolve(__dirname, './src/components'),
+      '@assets':  path.resolve(__dirname, './src/assets'),
       '@img': path.resolve(__dirname, './src/assets/images'),
       '@kits': path.resolve(__dirname, './src/kits'),
       '@store': path.resolve(__dirname, './src/store')
@@ -93,14 +94,14 @@ module.exports = {
       fix: true,
       useEslintrc: true
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: utils.resolve('./public/static'),
-    //       to: 'static',
-    //     },
-    //   ],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: utils.resolve('./public/static'),
+          to: 'static',
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css')
