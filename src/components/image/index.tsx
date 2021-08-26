@@ -4,10 +4,14 @@ import defaultImg from '@assets/images/default_goods.png'
 
 const Index = (props: IndexProps) => {
   const [url, setUrl] = useState<string>(props.url)
-  const {className, onClick =()=>{} } = props
+  const {className, lazy = false, onClick =()=>{} } = props
 
-  const imgRef = useRef<HTMLImageElement>(null)
-  const inViewPort = useInViewport(imgRef)
+  let imgRef = undefined
+  let inViewPort: boolean | undefined = true
+  if(lazy) {
+     imgRef = useRef<HTMLImageElement>(null)
+     inViewPort = useInViewport(imgRef)
+  }
 
   useEffect(() => {
     setUrl(props.url)
@@ -20,6 +24,7 @@ export default Index
 
 type IndexProps = {
   url: string
+  lazy?: boolean
   onClick?: Function
   className: string
 }

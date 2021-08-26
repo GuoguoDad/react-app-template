@@ -7,7 +7,7 @@ const Item = (props: {url: string}) => {
 
   return (
     <div className={styles.item_container}>
-      <Image className={styles.goods_img} url={ url } />
+      <Image lazy className={styles.goods_img} url={ url } />
     </div>
   )
 }
