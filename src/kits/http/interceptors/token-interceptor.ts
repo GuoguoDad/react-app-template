@@ -1,4 +1,4 @@
-import { AxiosRequsetInterceptor } from './types';
+import { AxiosRequsetInterceptor } from './types'
 
 export const TokenInjectRequestInterceptor: AxiosRequsetInterceptor = [
   async (req) => {
@@ -15,12 +15,12 @@ export const TokenInjectRequestInterceptor: AxiosRequsetInterceptor = [
     //     req.headers['x-bifrost-aj-token'] = _aj_token;
     //     req.headers['x-bifrost-jwt'] = jwt;
     // }
-    return req;
+    return req
   },
   (error) => {
     // @ts-ignore
     // eslint-disable-next-line no-console
-    console.warn('axios token error', error);
-    return Promise.reject(error);
+    console.warn('axios token error', error)
+    return Promise.reject(error)
   },
-];
+]

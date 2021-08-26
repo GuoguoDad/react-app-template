@@ -1,32 +1,32 @@
-import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ListView, PullToRefresh, Modal } from 'antd-mobile';
-import './index.less';
+import React, { useEffect, useRef, useState, ReactNode, RefObject } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { ListView, PullToRefresh, Modal } from 'antd-mobile'
+import './index.less'
 
-import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store';
-import { Header, SearchScanBar } from '../../components';
-import { queryUnpackListAsync } from './actor';
-import { RootState } from '../../store';
-import { UnpackGoods } from './types';
-import Item from './component/item';
-import UnpackingModal from './component/unpacking-popup-modal';
-import ResultModal from './component/unpacking-result-modal';
-import { RouteComponentProps } from 'react-router-dom';
+import { pullRefresh, setCurrentPage, setShowUnpackingModal } from './store'
+import { Header, SearchScanBar } from '../../components'
+import { queryUnpackListAsync } from './actor'
+import { RootState } from '../../store'
+import { UnpackGoods } from './types'
+import Item from './component/item'
+import UnpackingModal from './component/unpacking-popup-modal'
+import ResultModal from './component/unpacking-result-modal'
+import { RouteComponentProps } from 'react-router-dom'
 
-const { alert } = Modal;
-const MyPullToRefresh: any = PullToRefresh;
+const { alert } = Modal
+const MyPullToRefresh: any = PullToRefresh
 
 const ListContainer = (props: { children?: ReactNode }) => {
-  return <div className="am-list-body my-body">{props.children}</div>;
-};
+  return <div className="am-list-body my-body">{props.children}</div>
+}
 
 const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
-  const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.unpacks);
+  const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.unpacks)
 
-  const dispatch = useDispatch();
-  const [keyWord, setKeyWord] = useState('');
-  const [height, setHeight] = useState(0);
-  const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch()
+  const [keyWord, setKeyWord] = useState('')
+  const [height, setHeight] = useState(0)
+  const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
   const queryList = (pageNum: number) => {
     const params = {
@@ -34,19 +34,19 @@ const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
       keyWord,
       pageNum,
       pageSize: 20,
-    };
-    dispatch(queryUnpackListAsync(params));
-  };
+    }
+    dispatch(queryUnpackListAsync(params))
+  }
 
   useEffect(() => {
-    queryList(currentPage);
-  }, []);
+    queryList(currentPage)
+  }, [])
 
   useEffect(() => {
-    const offsetTop = preDomRef.current?.offsetTop ?? 0;
-    const height = document.documentElement.clientHeight - offsetTop;
-    setHeight(height);
-  });
+    const offsetTop = preDomRef.current?.offsetTop ?? 0
+    const height = document.documentElement.clientHeight - offsetTop
+    setHeight(height)
+  })
 
   const toDel = () => {
     alert('删除配比关系', '请确认是否删除配比关系？', [
@@ -55,8 +55,8 @@ const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
         text: '确定',
         onPress: () => {},
       },
-    ]);
-  };
+    ])
+  }
 
   const row = (rowData: UnpackGoods, sectionID: string | number, rowID: string | number) => {
     return (
@@ -67,27 +67,27 @@ const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
         toDel={() => toDel()}
         toUnpackPackage={() => dispatch(setShowUnpackingModal({ show: true, data: rowData }))}
       />
-    );
-  };
+    )
+  }
 
   const renderLoading = () => {
-    return <div className="unpack_loading">{isLoading ? '加载中...' : hasMore ? '加载结束' : '没有更多了~'}</div>;
-  };
+    return <div className="unpack_loading">{isLoading ? '加载中...' : hasMore ? '加载结束' : '没有更多了~'}</div>
+  }
 
   const loadMore = () => {
     if (hasMore) {
-      const newPage = currentPage + 1;
-      dispatch(setCurrentPage(newPage));
-      queryList(newPage);
+      const newPage = currentPage + 1
+      dispatch(setCurrentPage(newPage))
+      queryList(newPage)
     }
-  };
+  }
 
   const refresh = () => {
-    dispatch(pullRefresh());
-    queryList(1);
-  };
+    dispatch(pullRefresh())
+    queryList(1)
+  }
 
-  const ds = new ListView.DataSource({ rowHasChanged: (r1: UnpackGoods, r2: UnpackGoods) => r1 !== r2 });
+  const ds = new ListView.DataSource({ rowHasChanged: (r1: UnpackGoods, r2: UnpackGoods) => r1 !== r2 })
 
   return (
     <>
@@ -97,20 +97,20 @@ const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
         title="拆包"
         rightTxt="新增配比"
         backFun={() => {
-          console.log('-----back');
+          console.log('-----back')
         }}
         rightFun={() => {
-          console.log('-----add');
+          console.log('-----add')
         }}
       />
       <SearchScanBar
         placeholder="搜索商品名称/条形码"
         onChange={(val: string) => {
-          setKeyWord(val);
-          refresh();
+          setKeyWord(val)
+          refresh()
         }}
         onScanClick={() => {
-          console.log('-----scan');
+          console.log('-----scan')
         }}
       />
       <div ref={preDomRef} />
@@ -130,6 +130,6 @@ const UnpackList = (props: RouteComponentProps<{ storeCode: string }>) => {
       <UnpackingModal />
       <ResultModal />
     </>
-  );
-};
-export default UnpackList;
+  )
+}
+export default UnpackList

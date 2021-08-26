@@ -1,21 +1,21 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Modal, Button } from 'antd-mobile';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Modal, Button } from 'antd-mobile'
 
-import { RootState } from '../../../store';
-import { setShowResultModal } from '../store';
-import './unpcking-result-modal.less';
+import { RootState } from '../../../store'
+import { setShowResultModal } from '../store'
+import './unpcking-result-modal.less'
 
-import finshIcon from '@assets/images/finsh_icon.png';
+import finshIcon from '@assets/images/finsh_icon.png'
 
 const UnpackingResultModal = () => {
-  const { showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks);
+  const { showUnpackingResultModal, unpackingSuccess } = useSelector((state: RootState) => state.unpacks)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const close = () => {
-    dispatch(setShowResultModal(false));
-  };
+    dispatch(setShowResultModal(false))
+  }
 
   const renderHeader = () => {
     return (
@@ -26,12 +26,12 @@ const UnpackingResultModal = () => {
           <a>关闭</a>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const toUnpacking = () => {
-    close();
-  };
+    close()
+  }
 
   return (
     <Modal
@@ -50,11 +50,11 @@ const UnpackingResultModal = () => {
         继续拆包
       </Button>
     </Modal>
-  );
-};
+  )
+}
 
 export type PopupProps = {
   visible: boolean;
 };
 
-export default UnpackingResultModal;
+export default UnpackingResultModal

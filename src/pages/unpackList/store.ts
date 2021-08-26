@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { extraReducers } from './extra-reducer';
-import { UnpackGoods } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { extraReducers } from './extra-reducer'
+import { UnpackGoods } from './types'
 
 export interface UnpackingState {
   dataList: UnpackGoods[]; // 拆包关系列表数据
@@ -37,34 +37,34 @@ const initialState: UnpackingState = {
   showUnpackingResultModal: false,
   unpackingSuccess: false,
   unpackingMsg: '',
-};
+}
 
 export const unpackListSlice = createSlice({
   name: 'unpacking',
   initialState,
   reducers: {
     setKeywork: (state, action: PayloadAction<string>) => {
-      state.keywork = action.payload;
+      state.keywork = action.payload
     },
     pullRefresh: (state) => {
-      state.refreshing = true;
-      state.currentPage = 1;
+      state.refreshing = true
+      state.currentPage = 1
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
+      state.currentPage = action.payload
     },
     setShowUnpackingModal: (state, action: PayloadAction<{ show: boolean; data?: UnpackGoods }>) => {
-      const { show, data } = action.payload;
-      state.showUnpackingModal = show;
+      const { show, data } = action.payload
+      state.showUnpackingModal = show
       // @ts-ignore
-      state.unpackingModalData = data || {};
+      state.unpackingModalData = data || {}
     },
     setShowResultModal: (state, action: PayloadAction<boolean>) => {
-      state.showUnpackingResultModal = action.payload;
+      state.showUnpackingResultModal = action.payload
     },
   },
   extraReducers,
-});
+})
 
 export const {
   setKeywork,
@@ -72,5 +72,5 @@ export const {
   pullRefresh,
   setShowUnpackingModal,
   setShowResultModal,
-} = unpackListSlice.actions;
-export default unpackListSlice.reducer;
+} = unpackListSlice.actions
+export default unpackListSlice.reducer

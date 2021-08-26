@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from 'antd-mobile';
-import './item.less';
+import React from 'react'
+import { Button } from 'antd-mobile'
+import './item.less'
 
-import GoodsImg from '@assets/images/goods_img.png';
-import DeleteIcon from '@assets/images/delete.png';
-import { UnpackGoods } from '../types';
+import GoodsImg from '@assets/images/goods_img.png'
+import DeleteIcon from '@assets/images/delete.png'
+import { UnpackGoods } from '../types'
 
 const Item = (props: ItemProps) => {
-  const { data, toUnpackPackage, toDel } = props;
-  const { mainGoodsInfo, subGoodsInfo, proportion } = data || {};
+  const { data, toUnpackPackage, toDel } = props
+  const { mainGoodsInfo, subGoodsInfo, proportion } = data || {}
 
   const renderMainGoods = () => {
     return (
@@ -26,8 +26,8 @@ const Item = (props: ItemProps) => {
           <div className="retailPrice">￥{mainGoodsInfo.retailPrice}</div>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const renderSubGoodsInfo = () => {
     return (
@@ -50,8 +50,8 @@ const Item = (props: ItemProps) => {
           </div>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div className="item_container">
@@ -59,8 +59,8 @@ const Item = (props: ItemProps) => {
       <hr className="separatorLine" />
       {renderSubGoodsInfo()}
     </div>
-  );
-};
+  )
+}
 export type ItemProps = {
   data: UnpackGoods;
   sectionID: string | number;
@@ -68,4 +68,4 @@ export type ItemProps = {
   toUnpackPackage: Function;
   toDel: Function;
 };
-export default Item;
+export default Item

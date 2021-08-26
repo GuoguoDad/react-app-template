@@ -1,26 +1,26 @@
-import React, { useState, RefObject, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ListView, PullToRefresh } from 'antd-mobile';
+import React, { useState, RefObject, useRef, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { ListView, PullToRefresh } from 'antd-mobile'
 
-import { RouteComponentProps } from 'react-router-dom';
-import { Header, SearchScanBar, Loading, ListContainer } from '../../components';
-import { queryStoreGoodsListAsync } from './actor';
-import { pullRefresh, setCurrentPage } from './store';
-import { RootState } from '../../store';
-import { GoodsListItem } from './component/item';
-import { Goods } from './types';
+import { RouteComponentProps } from 'react-router-dom'
+import { Header, SearchScanBar, Loading, ListContainer } from '../../components'
+import { queryStoreGoodsListAsync } from './actor'
+import { pullRefresh, setCurrentPage } from './store'
+import { RootState } from '../../store'
+import { GoodsListItem } from './component/item'
+import { Goods } from './types'
 
-const MyPullToRefresh: any = PullToRefresh;
+const MyPullToRefresh: any = PullToRefresh
 
 const GoodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
-  const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.goods);
+  const { currentPage, isLoading, dataList, refreshing, hasMore } = useSelector((state: RootState) => state.goods)
 
-  const dispatch = useDispatch();
-  const [keyWord, setKeyWord] = useState('');
-  const [height, setHeight] = useState(0);
-  const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch()
+  const [keyWord, setKeyWord] = useState('')
+  const [height, setHeight] = useState(0)
+  const preDomRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
-  const ds = new ListView.DataSource({ rowHasChanged: (r1: Goods, r2: Goods) => r1 !== r2 });
+  const ds = new ListView.DataSource({ rowHasChanged: (r1: Goods, r2: Goods) => r1 !== r2 })
 
   const queryList = (pageNum: number) => {
     const params = {
@@ -28,32 +28,32 @@ const GoodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
       keyWord,
       pageNum,
       pageSize: 20,
-    };
-    dispatch(queryStoreGoodsListAsync(params));
-  };
+    }
+    dispatch(queryStoreGoodsListAsync(params))
+  }
 
   useEffect(() => {
-    queryList(currentPage);
-  }, []);
+    queryList(currentPage)
+  }, [])
 
   useEffect(() => {
-    const offsetTop = preDomRef.current?.offsetTop ?? 0;
-    const height = document.documentElement.clientHeight - offsetTop;
-    setHeight(height);
-  });
+    const offsetTop = preDomRef.current?.offsetTop ?? 0
+    const height = document.documentElement.clientHeight - offsetTop
+    setHeight(height)
+  })
 
   const loadMore = () => {
     if (hasMore) {
-      const newPage = currentPage + 1;
-      dispatch(setCurrentPage(newPage));
-      queryList(newPage);
+      const newPage = currentPage + 1
+      dispatch(setCurrentPage(newPage))
+      queryList(newPage)
     }
-  };
+  }
 
   const refresh = () => {
-    dispatch(pullRefresh());
-    queryList(1);
-  };
+    dispatch(pullRefresh())
+    queryList(1)
+  }
 
   return (
     <>
@@ -62,17 +62,17 @@ const GoodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
         showRight={false}
         title="选择商品"
         backFun={() => {
-          console.log('-----back');
+          console.log('-----back')
         }}
       />
       <SearchScanBar
         placeholder="搜索商品名称/条形码"
         onChange={(val: string) => {
-          setKeyWord(val);
-          refresh();
+          setKeyWord(val)
+          refresh()
         }}
         onScanClick={() => {
-          console.log('-----scan');
+          console.log('-----scan')
         }}
       />
       <div ref={preDomRef} />
@@ -90,7 +90,7 @@ const GoodsList = (props: RouteComponentProps<{ storeCode: string }>) => {
         onEndReachedThreshold={10}
       />
     </>
-  );
-};
+  )
+}
 
-export default GoodsList;
+export default GoodsList

@@ -1,6 +1,5 @@
-import Msg from './msg';
-import Router from './router';
-import Fetch from './http/fetch';
-import Loadable from './loadable';
+import Msg from './msg'
+import Fetch from './http/fetch'
+import Loadable from './loadable'
 
-export { Msg, Router, Fetch, Loadable };
+export { Msg, Fetch, Loadable }

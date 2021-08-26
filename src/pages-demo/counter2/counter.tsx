@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 
-import styles from './counter.module.less';
-import { increment, decrement, incrementByAmount, incrementAsync } from './actions';
-import { CounterState } from './types';
+import styles from './counter.module.less'
+import { increment, decrement, incrementByAmount, incrementAsync } from './actions'
+import { CounterState } from './types'
 
 const mapStateToProps = (state: CounterState) => ({
   count: state.count,
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onDecrement: () => dispatch(decrement()),
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   onIncrementByAmount: (amount: number) => dispatch(incrementByAmount(amount)),
   // @ts-ignore
   onIncrementAsync: (amount: number) => dispatch(incrementAsync(amount)),
-});
+})
 
 type ReduxProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
@@ -26,15 +26,15 @@ type DemoState = {
 
 class Counter2Demo extends Component<ReduxProps, DemoState> {
   constructor(props: ReduxProps) {
-    super(props);
+    super(props)
     this.state = {
       step: 2,
-    };
+    }
   }
 
   render() {
-    const { step } = this.state;
-    const { count, onIncrement, onDecrement, onIncrementByAmount, onIncrementAsync } = this.props;
+    const { step } = this.state
+    const { count, onIncrement, onDecrement, onIncrementByAmount, onIncrementAsync } = this.props
 
     return (
       <div>
@@ -43,7 +43,7 @@ class Counter2Demo extends Component<ReduxProps, DemoState> {
             className={styles.button}
             aria-label="Increment count"
             onClick={() => {
-              onIncrement();
+              onIncrement()
             }}
           >
             +
@@ -53,7 +53,7 @@ class Counter2Demo extends Component<ReduxProps, DemoState> {
             className={styles.button}
             aria-label="Decrement count"
             onClick={() => {
-              onDecrement();
+              onDecrement()
             }}
           >
             -
@@ -74,8 +74,8 @@ class Counter2Demo extends Component<ReduxProps, DemoState> {
           </button>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter2Demo);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter2Demo)

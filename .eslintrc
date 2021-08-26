@@ -1,25 +1,31 @@
 {
   "extends": [
-    "airbnb",
-    "plugin:prettier/recommended"
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 7,
+    "ecmaVersion": 2018, //指定ECMAScript支持的版本
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  "parser": "babel-eslint",
   "env": {
-    "es6": true,
     "browser": true,
     "node": true
   },
-  "plugins": ["react", "react-hooks", "jsx-a11y", "import"],
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "quotes": [2, "single"],
+    "semi": [1, "never"],
+    "react-hooks/rules-of-hooks": 0,
+    "react-hooks/exhaustive-deps": 0,
     "class-methods-use-this": 0,
     "import/no-named-as-default": 0,
     "import/no-extraneous-dependencies": 0,
@@ -53,6 +59,12 @@
     "no-useless-escape": 0,
     "no-new-func": 0,
     "global-require": 0,
-    "import/no-dynamic-require": 0
+    "import/no-dynamic-require": 0,
+    "@typescript-eslint/no-var-requires": 0
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

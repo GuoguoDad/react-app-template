@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import './item.less';
-import GoodsImg from '@assets/images/goods_img.png';
-import { Goods } from '../types';
+import './item.less'
+import GoodsImg from '@assets/images/goods_img.png'
+import { Goods } from '../types'
 
 export const GoodsListItem = (rowData: Goods, sectionID: string | number, rowID: string | number) => {
   return (
@@ -19,5 +19,5 @@ export const GoodsListItem = (rowData: Goods, sectionID: string | number, rowID:
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

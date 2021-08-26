@@ -1,6 +1,6 @@
-import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { queryUnpackListAsync, submitUnpackPackageAsync } from './actor';
-import { UnpackingState } from './store';
+import { ActionReducerMapBuilder } from '@reduxjs/toolkit'
+import { queryUnpackListAsync, submitUnpackPackageAsync } from './actor'
+import { UnpackingState } from './store'
 
 export const extraReducers = (builder: ActionReducerMapBuilder<UnpackingState>) => {
   //queryUnpackListAsync 下拉刷新，上拉加载更多逻辑
@@ -29,8 +29,8 @@ export const extraReducers = (builder: ActionReducerMapBuilder<UnpackingState>) 
   //拆包操作防止重复点击，提示信息
   builder.addCase(submitUnpackPackageAsync.pending,(state, { meta })=>{
     if (state.unpackingFlag === 'idle') {
-      state.unpackingFlag = 'pending';
-      state.currentRequestId = meta.requestId;
+      state.unpackingFlag = 'pending'
+      state.currentRequestId = meta.requestId
     }
   }),
   builder.addCase(submitUnpackPackageAsync.fulfilled, (state, { payload, meta })=> {
@@ -45,7 +45,7 @@ export const extraReducers = (builder: ActionReducerMapBuilder<UnpackingState>) 
   builder.addCase(submitUnpackPackageAsync.rejected, (state, { payload, meta, error }) => {
     if (state.unpackingFlag === 'pending' && state.currentRequestId === meta.requestId) {
       state.unpackingFlag = 'idle'
-      const msg = payload as string;
+      const msg = payload as string
       state.showUnpackingModal = false
       state.showUnpackingResultModal = true
       state.unpackingSuccess = false

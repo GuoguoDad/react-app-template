@@ -1,4 +1,4 @@
-import { IActionType } from './actions';
+import { IActionType } from './actions'
 
 export type ModifyAction = {
   type: IActionType.DECREMENT | IActionType.INCREMENT;

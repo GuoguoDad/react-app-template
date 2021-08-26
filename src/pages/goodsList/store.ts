@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { extraReducers } from './extra-reducer';
-import { Goods } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { extraReducers } from './extra-reducer'
+import { Goods } from './types'
 
 export interface GoodsListState {
   dataList: Goods[]; // 商品列表数据
@@ -18,25 +18,25 @@ const initialState: GoodsListState = {
   isLoading: false,
   refreshing: true,
   hasMore: true,
-};
+}
 
 export const goodsListSlice = createSlice({
   name: 'goodsList',
   initialState,
   reducers: {
     setKeywork: (state, action: PayloadAction<string>) => {
-      state.keywork = action.payload;
+      state.keywork = action.payload
     },
     pullRefresh: (state) => {
-      state.refreshing = true;
-      state.currentPage = 1;
+      state.refreshing = true
+      state.currentPage = 1
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
+      state.currentPage = action.payload
     },
   },
   extraReducers,
-});
+})
 
-export const { setKeywork, setCurrentPage, pullRefresh } = goodsListSlice.actions;
-export default goodsListSlice.reducer;
+export const { setKeywork, setCurrentPage, pullRefresh } = goodsListSlice.actions
+export default goodsListSlice.reducer

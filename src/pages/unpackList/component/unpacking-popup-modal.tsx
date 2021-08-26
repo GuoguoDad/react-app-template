@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Modal, Stepper, Button } from 'antd-mobile';
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Modal, Stepper, Button } from 'antd-mobile'
 
-import { RootState } from '../../../store';
-import { setShowUnpackingModal } from '../store';
-import { submitUnpackPackageAsync } from '../actor';
-import './unpcking-popup-modal.less';
+import { RootState } from '../../../store'
+import { setShowUnpackingModal } from '../store'
+import { submitUnpackPackageAsync } from '../actor'
+import './unpcking-popup-modal.less'
 
-import packageIcon from '@assets/images/package_icon.png';
-import subGoodsIcon from '@assets/images/subgoods_iocn.png';
-import ArrowDown from '@assets/images/arrow_down.png';
+import packageIcon from '@assets/images/package_icon.png'
+import subGoodsIcon from '@assets/images/subgoods_iocn.png'
+import ArrowDown from '@assets/images/arrow_down.png'
 
 const UnpackingModal = () => {
-  const { showUnpackingModal, unpackingModalData } = useSelector((state: RootState) => state.unpacks);
+  const { showUnpackingModal, unpackingModalData } = useSelector((state: RootState) => state.unpacks)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [mainGoodsToUnpackNum, setMainGoodsToUnpackNum] = useState<number>(1);
+  const [mainGoodsToUnpackNum, setMainGoodsToUnpackNum] = useState<number>(1)
 
   const close = () => {
-    dispatch(setShowUnpackingModal({ show: false, data: unpackingModalData }));
-  };
+    dispatch(setShowUnpackingModal({ show: false, data: unpackingModalData }))
+  }
 
   const renderHeader = () => {
     return (
@@ -31,8 +31,8 @@ const UnpackingModal = () => {
           <a>关闭</a>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const renderMainGoods = () => {
     return (
@@ -53,11 +53,11 @@ const UnpackingModal = () => {
           />
         </div>
       </div>
-    );
-  };
+    )
+  }
 
-  const proportion = unpackingModalData?.proportion ?? 0;
-  const subNum = proportion * mainGoodsToUnpackNum;
+  const proportion = unpackingModalData?.proportion ?? 0
+  const subNum = proportion * mainGoodsToUnpackNum
   const renderSubGoodsInfo = () => {
     return (
       <>
@@ -75,8 +75,8 @@ const UnpackingModal = () => {
         </div>
         <span className="unpacking-relation">整件和散件的拆包配比关系为1:{proportion}</span>
       </>
-    );
-  };
+    )
+  }
 
   const submit = async () => {
     const param = {
@@ -86,9 +86,9 @@ const UnpackingModal = () => {
       mainNum: mainGoodsToUnpackNum.toString(),
       subNum: subNum.toString(),
       proportion: proportion.toString(),
-    };
-    dispatch(submitUnpackPackageAsync(param));
-  };
+    }
+    dispatch(submitUnpackPackageAsync(param))
+  }
 
   return (
     <Modal
@@ -108,11 +108,11 @@ const UnpackingModal = () => {
         确定
       </Button>
     </Modal>
-  );
-};
+  )
+}
 
 export type PopupProps = {
   visible: boolean;
 };
 
-export default UnpackingModal;
+export default UnpackingModal

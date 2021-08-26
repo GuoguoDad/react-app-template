@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import 'babel-polyfill';
-import './index.less';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import 'babel-polyfill'
+import './index.less'
 
-import { store } from './store';
-// import reduxStore from './pages-demo/counter2/store';
-import Routes from './routes';
+import { store } from './store'
+import Routes from './routes'
 
 ReactDOM.render(
   <>
@@ -15,4 +14,4 @@ ReactDOM.render(
     </Provider>
   </>,
   document.getElementById('root'),
-);
+)

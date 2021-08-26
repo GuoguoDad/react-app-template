@@ -1,26 +1,42 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
+    "noEmit": true,
+    "jsx": "react",
+    "rootDir": "src",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types", "typings"],
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*" : ["src/pages/*"],
+      "@comps" : ["src/components"],
+      "@img/*" : ["src/assets/images/*"],
+      "@kits": ["src/kits"],
+      "@store": ["src/store"]
+    },
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": [
-    "src",
-    "typings"
+  "include": ["./src/**/*", "./typings/*"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "webpack",
+    "jest",
+    "**/*.tpl.ts"
   ]
 }

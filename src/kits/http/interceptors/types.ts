@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export type AxiosInterceptor<V> = [OnFulfilled<V>, OnRejected];
 export type AxiosRequsetInterceptor = [RequestOnFulfilled, OnRejected];

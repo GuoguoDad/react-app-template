@@ -1,32 +1,32 @@
-import React, { useState, useRef } from 'react';
-import ScanIcon from '@assets/images/scan_grey.png';
-import SearchIcon from '@assets/images/search.png';
-import DelIcon from '@assets/images/del.png';
-import './index.less';
+import React, { useState, useRef } from 'react'
+import ScanIcon from '@assets/images/scan_grey.png'
+import SearchIcon from '@assets/images/search.png'
+import DelIcon from '@assets/images/del.png'
+import './index.less'
 
 export const SearchScanBar = (props: SearchScanBarProps) => {
-  const { placeholder, onChange = () => {}, maxLength, onScanClick = () => {} } = props;
+  const { placeholder, onChange = () => {}, maxLength, onScanClick = () => {} } = props
 
-  const [showDel, setShowDel] = useState<boolean>(false);
+  const [showDel, setShowDel] = useState<boolean>(false)
 
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>('')
 
   const onChangeFun = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    onChange(value);
-    setValue(value);
+    const { value } = e.target
+    onChange(value)
+    setValue(value)
     if (value && !showDel) {
-      setShowDel(true);
+      setShowDel(true)
     } else if (!value && showDel) {
-      setShowDel(false);
+      setShowDel(false)
     }
-  };
+  }
 
   const clearInput = () => {
-    setValue('');
-    setShowDel(false);
-    onChange('');
-  };
+    setValue('')
+    setShowDel(false)
+    onChange('')
+  }
 
   return (
     <div className="search-scan-bar center">
@@ -44,8 +44,8 @@ export const SearchScanBar = (props: SearchScanBarProps) => {
         <img onClick={() => onScanClick()} className="icon" src={ScanIcon} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export type SearchScanBarProps = {
   placeholder?: string;

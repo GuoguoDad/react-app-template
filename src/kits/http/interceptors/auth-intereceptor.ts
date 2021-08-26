@@ -1,6 +1,6 @@
-import { AxiosResponse } from 'axios';
-import { BaseResponse } from '../response';
-import { AxiosInterceptor } from './types';
+import { AxiosResponse } from 'axios'
+import { BaseResponse } from '../response'
+import { AxiosInterceptor } from './types'
 
 export const AuthInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<unknown>>> = [
   // @ts-ignore
@@ -11,11 +11,11 @@ export const AuthInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<unknow
     //     // eslint-disable-next-line prefer-promise-reject-errors
     //     return Promise.reject('token expired');
     // }
-    return res;
+    return res
   },
   (error) => {
     // @ts-ignore
-    console.warn('axios auth error', error);
-    return Promise.reject(error);
+    console.warn('axios auth error', error)
+    return Promise.reject(error)
   },
-];
+]
