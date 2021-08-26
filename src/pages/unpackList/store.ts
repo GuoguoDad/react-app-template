@@ -43,23 +43,23 @@ export const unpackListSlice = createSlice({
   name: 'unpacking',
   initialState,
   reducers: {
-    setKeywork: (state, action: PayloadAction<string>) => {
+    setKeywork: (state: UnpackingState, action: PayloadAction<string>) => {
       state.keywork = action.payload
     },
-    pullRefresh: (state) => {
+    pullRefresh: (state: UnpackingState) => {
       state.refreshing = true
       state.currentPage = 1
     },
-    setCurrentPage: (state, action: PayloadAction<number>) => {
+    setCurrentPage: (state: UnpackingState, action: PayloadAction<number>) => {
       state.currentPage = action.payload
     },
-    setShowUnpackingModal: (state, action: PayloadAction<{ show: boolean; data?: UnpackGoods }>) => {
+    setShowUnpackingModal: (state: UnpackingState, action: PayloadAction<{ show: boolean; data?: UnpackGoods }>) => {
       const { show, data } = action.payload
       state.showUnpackingModal = show
       // @ts-ignore
       state.unpackingModalData = data || {}
     },
-    setShowResultModal: (state, action: PayloadAction<boolean>) => {
+    setShowResultModal: (state: UnpackingState, action: PayloadAction<boolean>) => {
       state.showUnpackingResultModal = action.payload
     },
   },
