@@ -69,7 +69,7 @@ module.exports = {
       '@img': path.resolve(__dirname, './src/assets/images'),
       '@kits': path.resolve(__dirname, './src/kits'),
       '@store': path.resolve(__dirname, './src/store')
-    },
+    }
   },
   plugins: [
     new ESLintWebpackPlugin({
@@ -77,7 +77,7 @@ module.exports = {
       cache: false,
       emitWarning: true,
       emitError: true,
-      files: ['src'],
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
       formatter: require.resolve('eslint-friendly-formatter'),
       eslintPath: require.resolve('eslint'),
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
