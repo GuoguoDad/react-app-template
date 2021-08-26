@@ -6,17 +6,15 @@ import { Loadable } from '@kits'
 
 const history = createHashHistory()
 
-const Counter = Loadable(() => import('./pages-demo/counter/counter'))
-const BooksManageList = Loadable(() => import('./pages-demo/books/index'))
-const UnpackList = Loadable(() => import('./pages/unpackList'))
-const GoodsList = Loadable(() => import('./pages/goodsList'))
+const UnpackList = Loadable(() => import('@pages/unpackList'))
+const GoodsList = Loadable(() => import('@pages/goodsList'))
+const ImageList = Loadable(() => import('@pages/imageList'))
 
 const Routes = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/counter" component={Counter} />
-        <Route path="/BooksManageList" component={BooksManageList} />
+        <Route path="/imageList" component={ImageList} />
         <Route path="/unpackList/:storeCode" component={UnpackList} />
         <Route path="/goodsList/:storeCode" component={GoodsList} />
       </Switch>

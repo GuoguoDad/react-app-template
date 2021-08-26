@@ -104,7 +104,8 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name]-[contenthash:5].css'),
-      chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css')
+      chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
+      ignoreOrder: true
     }),
     new HtmlWebpackPlugin({
       title: 'fe-app',
