@@ -13,7 +13,7 @@ module.exports = merge(baseWebpackConfig, {
   },
   devtool: false,
   plugins: [
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {
