@@ -13,7 +13,7 @@
     "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.5.0",
     "ahooks": "^2.9.1",
-    "antd-mobile": "^2.3.3",
+    "antd-mobile": "^5.0.0-beta.14",
     "axios": "^0.21.0",
     "events": "^3.2.0",
     "lodash": "^4.17.20",
