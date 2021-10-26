@@ -7,12 +7,14 @@ import { Loadable } from '@kits'
 const history = createHashHistory()
 
 const ImageList = Loadable(() => import('@pages/imageList'))
+const ImageDetail = Loadable(() => import('@pages/imageDetail'))
 
 const Routes = () => {
   return (
     <Router history={history}>
       <Switch>
         <Route path="/imageList" component={ImageList} />
+        <Route path="/imageDetail" component={ImageDetail} />
       </Switch>
     </Router>
   )

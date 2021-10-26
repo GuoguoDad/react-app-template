@@ -7,8 +7,10 @@ import styles from './index.module.less'
 import './index.less'
 
 import Item from './components/item'
+import { useHistory } from 'react-router'
 
 const ImageList = () => {
+  const history = useHistory()
   const [state, setState] = useSetState<{ dataList: Array<string>, isLoading: boolean, hasMore: boolean, refreshing: boolean }>
                       ({
                         dataList: ['http://oss.suning.com/sffe/sffe/goods.png',
@@ -26,23 +28,10 @@ const ImageList = () => {
         showRight
         title="图片懒加载"
       />
-      <Space wrap>
-        <Button
-          onClick={() => {
-            alert('hello.')
-          }}
-        >
-          Default
-        </Button>
-        <Button color='primary'>Primary</Button>
-        <Button color='success'>Success</Button>
-        <Button color='danger'>Danger</Button>
-        <Button color='warning'>Warning</Button>
-      </Space>
       <div style={{ height: 'calc(100% - 0.88rem)' }}>
         <List>
           {state.dataList.map((item, index) => (
-            <Item key={index} url={item}/>
+            <Item key={index} url={item} onClickFun={()=> history.push('/imageDetail') }/>
           ))}
         </List>
         <InfiniteScroll loadMore={async () => {}} hasMore={state.hasMore} />
