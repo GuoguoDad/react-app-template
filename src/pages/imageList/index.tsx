@@ -9,7 +9,7 @@ import './index.less'
 import Item from './components/item'
 import { useHistory } from 'react-router'
 
-const ImageList = () => {
+const ImageList = (props: any) => {
   const history = useHistory()
   const [state, setState] = useSetState<{ dataList: Array<string>, isLoading: boolean, hasMore: boolean, refreshing: boolean }>
                       ({
@@ -22,7 +22,7 @@ const ImageList = () => {
   },[])
 
   return (
-    <>
+    <div className={styles.page}>
       <Header
         hasBack
         showRight
@@ -31,12 +31,14 @@ const ImageList = () => {
       <div className={styles.infiniteList}>
         <List>
           {state.dataList.map((item, index) => (
-            <Item key={index} url={item} onClickFun={()=> history.push('/imageDetail') }/>
+            <Item key={index} url={item} onClickFun={()=>
+              history.push('/imageDetail')
+            }/>
           ))}
         </List>
         <InfiniteScroll loadMore={async () => {}} hasMore={state.hasMore} />
       </div>
-    </>
+    </div>
   )
 }
 

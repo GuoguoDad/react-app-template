@@ -3,8 +3,7 @@ import { Button, Space } from 'antd-mobile'
 import { useHistory } from 'react-router'
 import { Header } from '@comps'
 
-
-const ImageList = () => {
+const ImageList = (props: any) => {
   const history = useHistory()
 
   return (

@@ -1,22 +1,23 @@
 import React from 'react'
-import './header.less'
+import classNames from 'classnames'
+import styles from './index.module.less'
 import BackImg from '@assets/images/back.png'
 
 export const Header = (props: HeaderProps) => {
   const { hasBack = false, backFun = () => {}, title, showRight = false, rightTxt, rightFun = () => {} } = props
 
   return (
-    <div className="com_header">
-      <div onClick={() => backFun()} className="left">
-        {hasBack ? <img className="back_icon" src={BackImg} /> : <div />}
+    <div className={styles.com_header}>
+      <div onClick={() => backFun()} className={styles.left}>
+        {hasBack ? <img className={styles.back_icon} src={BackImg} /> : <div />}
       </div>
-      <div className="middle alignCenter">{title}</div>
+      <div className={classNames(styles.middle, styles.alignCenter)}>{title}</div>
       {showRight ? (
-        <div onClick={() => rightFun()} className="right centerRight">
+        <div onClick={() => rightFun()} className={classNames(styles.right, styles.centerRight)}>
           {rightTxt}
         </div>
       ) : (
-        <div className="right" />
+        <div className={styles.right} />
       )}
     </div>
   )
