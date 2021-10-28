@@ -1,5 +1,5 @@
-import React from 'react'
-import { InfiniteScroll, List, Button, Space } from 'antd-mobile'
+import React, {useEffect} from 'react'
+import { InfiniteScroll, List } from 'antd-mobile'
 import { useSetState } from 'ahooks'
 import { add, add_active, add_disabled, arrowDown, arrowRight, backBlack, backWhite, arrowUp, coupon_card_content, banner, bottomBg, couponRed, fire, more, coupon_card_grey } from '@img/index'
 import { Header } from '@comps'
@@ -17,9 +17,9 @@ const ImageList = () => {
                           add,add_active,add_disabled,arrowDown,arrowRight,backBlack,backWhite,arrowUp,coupon_card_content,
                           banner, bottomBg,couponRed,fire,more,coupon_card_grey], isLoading: false, hasMore: true, refreshing: true })
 
-  const renderLoading = () => {
-    return <div className={styles.loading}>{state.isLoading ? '加载中...' : state.hasMore ? '加载结束' : '没有更多了~'}</div>
-  }
+  useEffect(()=>{
+    console.log('===========')
+  },[])
 
   return (
     <>
@@ -28,7 +28,7 @@ const ImageList = () => {
         showRight
         title="图片懒加载"
       />
-      <div style={{ height: 'calc(100% - 0.88rem)' }}>
+      <div className={styles.infiniteList}>
         <List>
           {state.dataList.map((item, index) => (
             <Item key={index} url={item} onClickFun={()=> history.push('/imageDetail') }/>

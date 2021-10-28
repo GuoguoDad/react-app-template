@@ -1,4 +1,3 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -6,6 +5,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 const utils = require('./utils')
+const path = require('path')
 
 module.exports = {
   output: {

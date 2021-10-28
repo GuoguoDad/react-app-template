@@ -6,12 +6,12 @@ import 'babel-polyfill'
 import './index.less'
 
 import { store } from './store'
-import Routes from './routes'
+import App from './app'
 
 ReactDOM.render(
   <>
     <Provider store={store}>
-      <Routes />
+      <App />
     </Provider>
   </>,
   document.getElementById('root')
