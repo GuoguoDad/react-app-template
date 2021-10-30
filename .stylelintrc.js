@@ -5,11 +5,11 @@ module.exports = {
     "stylelint-config-css-modules"
   ],
   "rules": {
-    "font-family-no-missing-generic-family-keyword": 0,
-    "declaration-block-no-duplicate-properties": 0,
-    "font-family-name-quotes": 0,
-    "selector-class-pattern": 0,
-    "declaration-block-no-redundant-longhand-properties": 0,
-    "selector-pseudo-element-no-unknown": 0
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-block-no-duplicate-properties": null,
+    "font-family-name-quotes": null,
+    "selector-class-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "selector-pseudo-element-no-unknown": null
   }
 }
