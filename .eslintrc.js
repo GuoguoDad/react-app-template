@@ -60,7 +60,8 @@ module.exports = {
     'no-new-func': 0,
     'global-require': 0,
     'import/no-dynamic-require': 0,
-    '@typescript-eslint/no-var-requires': 0
+    '@typescript-eslint/no-var-requires': 0,
+    'react/display-name': 0
   },
   'settings': {
     'react': {

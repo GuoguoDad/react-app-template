@@ -9,16 +9,15 @@ import './index.less'
 import Item from './components/item'
 import { useHistory } from 'react-router'
 
-const ImageList = (props: any) => {
+const ImageList = () => {
   const history = useHistory()
-  const [state, setState] = useSetState<{ dataList: Array<string>, isLoading: boolean, hasMore: boolean, refreshing: boolean }>
+  const [state] = useSetState<{ dataList: Array<string>, isLoading: boolean, hasMore: boolean, refreshing: boolean }>
                       ({
                         dataList: ['http://oss.suning.com/sffe/sffe/goods.png',
                           add,add_active,add_disabled,arrowDown,arrowRight,backBlack,backWhite,arrowUp,coupon_card_content,
                           banner, bottomBg,couponRed,fire,more,coupon_card_grey], isLoading: false, hasMore: true, refreshing: true })
 
   useEffect(()=>{
-    console.log('===========')
   },[])
 
   return (
