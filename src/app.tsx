@@ -6,8 +6,6 @@ import { Loadable } from '@kits'
 
 const history = createHashHistory()
 
-// import ImageList from '@pages/imageList'
-// import ImageDetail from '@pages/imageDetail'
 const ImageList = Loadable(()=> import('@pages/imageList'))
 const ImageDetail = Loadable(()=> import('@pages/imageDetail'))
 
