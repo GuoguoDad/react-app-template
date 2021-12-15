@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.config')
 
 module.exports = merge(baseWebpackConfig, {
@@ -10,7 +11,7 @@ module.exports = merge(baseWebpackConfig, {
   entry: {
     app: './src/index.tsx'
   },
-  devtool: false,
+  devtool: 'source-map',
   plugins: [
     // new BundleAnalyzerPlugin()
   ],
@@ -35,6 +36,7 @@ module.exports = merge(baseWebpackConfig, {
           ],
         }}
       ),
+      new HtmlMinimizerPlugin({ parallel: true }),
       new WebpackManifestPlugin({
         publicPath: './'
       })

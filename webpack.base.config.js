@@ -106,7 +106,7 @@ module.exports = {
         {
           from: utils.resolve('./dll'),
           to: 'dll',
-        },
+        }
       ],
     }),
     new MiniCssExtractPlugin({
@@ -130,7 +130,7 @@ module.exports = {
       }
     }),
     new HtmlExtPlugin({
-      dllPath: './dll/vendor.dll.c1db3a.js'
+      dllPath: 'dll/vendor.dll.c1db3a.js'
     }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',

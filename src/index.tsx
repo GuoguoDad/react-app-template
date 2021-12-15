@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import 'antd-mobile/es/global'
 import 'babel-polyfill'
@@ -10,7 +11,9 @@ import App from './app'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
   </Provider>,
   document.getElementById('root')
 )
