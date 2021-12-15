@@ -1,9 +1,11 @@
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
+const HtmlExtPlugin = require('./src/kits/html-ext-plugin')
 const utils = require('./utils')
 const path = require('path')
 
@@ -101,12 +103,21 @@ module.exports = {
           from: utils.resolve('./public/static'),
           to: 'static',
         },
+        {
+          from: utils.resolve('./dll'),
+          to: 'dll',
+        },
       ],
     }),
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       ignoreOrder: true
+    }),
+    new webpack.DllReferencePlugin({
+      name: 'vendor',
+      context: __dirname,
+      manifest: require(path.resolve(__dirname, './dll/vendor.dll.c1db3a.json'))
     }),
     new HtmlWebpackPlugin({
       title: 'fe-app',
@@ -117,6 +128,9 @@ module.exports = {
         collapseWhitespace: true,
         removeAttributeQuotes: true
       }
+    }),
+    new HtmlExtPlugin({
+      dllPath: './dll/vendor.dll.c1db3a.js'
     }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',
