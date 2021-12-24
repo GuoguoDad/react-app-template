@@ -11,6 +11,10 @@ object-assign
 */
 
 /*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */
+
+/*!
  * JavaScript Cookie v2.2.1
  * https://github.com/js-cookie/js-cookie
  *
