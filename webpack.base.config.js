@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const { DllReferencePlugin } = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -80,7 +80,7 @@ module.exports = {
   },
   plugins: [
     isEnvDevelopment && new ForkTsCheckerWebpackPlugin(),
-    new ESLintWebpackPlugin({
+    isEnvDevelopment && new ESLintWebpackPlugin({
       context: utils.appPath,
       cache: false,
       emitWarning: true,
@@ -92,7 +92,7 @@ module.exports = {
       ignore: true,
       fix: true
     }),
-    new StylelintPlugin({
+    isEnvDevelopment && new StylelintPlugin({
       context: utils.appPath,
       emitWarning: true,
       emitError: true,
@@ -115,7 +115,7 @@ module.exports = {
       chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       ignoreOrder: true
     }),
-    new webpack.DllReferencePlugin({
+    new DllReferencePlugin({
       name: 'vendor',
       context: __dirname,
       manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.fa6d70.json'))
