@@ -1,7 +1,5 @@
-import { Header } from './header'
-import { Loading } from './loading'
-import Image from './image'
-import { SearchScanBar } from './search-scan-bar'
-import { ListContainer } from './list-container'
+import Scene from './scene'
 
-export { Header, Image, Loading, SearchScanBar, ListContainer }
+export {
+  Scene
+}

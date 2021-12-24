@@ -111,11 +111,11 @@ module.exports = {
       chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       ignoreOrder: true
     }),
-    new webpack.DllReferencePlugin({
-      name: 'vendor',
-      context: __dirname,
-      manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.ce5334.json'))
-    }),
+    // new webpack.DllReferencePlugin({
+    //   name: 'vendor',
+    //   context: __dirname,
+    //   manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.ce5334.json'))
+    // }),
     new HtmlWebpackPlugin({
       title: 'fe-app',
       filename: 'index.html',
@@ -126,9 +126,9 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
-    new HtmlExtPlugin({
-      dllPath: 'static/dll/vendor.dll.ce5334.js'
-    }),
+    // new HtmlExtPlugin({
+    //   dllPath: 'static/dll/vendor.dll.ce5334.js'
+    // }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',
       clear: false

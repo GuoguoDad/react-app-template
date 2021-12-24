@@ -1,11 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import counterReducer from '../pages-demo/counter/counterSlice'
-import booksReducer from '../pages-demo/books/booksSlice'
+import mainReducer from '@pages/main/slice'
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
-  books: booksReducer
+  main: mainReducer
 })
 
 export default rootReducer

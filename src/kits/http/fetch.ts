@@ -6,7 +6,9 @@ import { ErrorResponseInterceptor } from './interceptors/error-response-intercep
 import { TokenInjectRequestInterceptor } from './interceptors/token-interceptor'
 
 const instance = axios.create()
+// @ts-ignore
 instance.defaults.headers['Content-Type'] = 'application/json'
+// @ts-ignore
 instance.defaults.headers.Accept = 'application/json'
 // WARN 使用拦截器当时候 要注意 拦截器先后顺序，会影响返回结果
 // dev 模式下记录 http 日志

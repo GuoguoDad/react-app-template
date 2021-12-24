@@ -19,6 +19,7 @@
       "@pages/*" : ["src/pages/*"],
       "@comps" : ["src/components"],
       "@assets/*": ["src/assets/*"],
+      "@img": ["src/assets/images"],
       "@img/*" : ["src/assets/images/*"],
       "@kits": ["src/kits"],
       "@store": ["src/store"]

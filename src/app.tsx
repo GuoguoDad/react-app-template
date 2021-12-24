@@ -1,18 +1,30 @@
-import React from 'react'
-import { Switch ,Route } from 'react-router-dom'
-import { Loadable } from '@kits'
+import React, { useEffect } from 'react'
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react'
+import { IonReactHashRouter } from '@ionic/react-router'
+import loadable from '@loadable/component'
+import { Route } from 'react-router-dom'
 
-const Test = Loadable(()=> import('@pages/test'))
-const ImageList = Loadable(()=> import('@pages/imageList'))
-const ImageDetail = Loadable(()=> import('@pages/imageDetail'))
+const MainTabs = loadable(() => import('@pages/main'))
+const ImgList = loadable(() => import('@pages/imgList'))
+const ImgDetail = loadable(() => import('@pages/imgDetail'))
 
 const App = () => {
+  useEffect(() => {
+    setupIonicReact({
+      mode: 'md'
+    })
+  },[])
+
   return (
-    <Switch>
-      <Route exact path="/test" component={Test} />
-      <Route exact path="/imageList" component={ImageList} />
-      <Route exact path="/imageDetail" component={ImageDetail} />
-    </Switch>
+    <IonApp>
+      <IonReactHashRouter>
+        <IonRouterOutlet>
+          <Route path={'/main'} exact component={MainTabs}/>
+          <Route path={'/imgList'} exact component={ImgList}/>
+          <Route path={'/imgDetail'} exact component={ImgDetail}/>
+        </IonRouterOutlet>
+      </IonReactHashRouter>
+    </IonApp>
   )
 }
 
