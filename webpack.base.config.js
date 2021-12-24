@@ -5,10 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('react-refresh-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
 const HtmlExtPlugin = require('./src/kits/html-ext-plugin')
 const getCSSModuleLocalIdent = require('./getCSSModuleLocalIdent')
 const utils = require('./utils')
 const path = require('path')
+
+const isEnvProduction = process.env.NODE_ENV === 'production'
+const isEnvDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
   output: {
@@ -19,22 +25,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader',
           {
-            loader: 'ts-loader',
+            loader: 'babel-loader',
             options: {
-              transpileOnly: true
+              cacheDirectory: true,
+              plugins: [
+                isEnvDevelopment &&
+                require.resolve('react-refresh/babel'),
+              ].filter(Boolean)
             }
           }
         ]
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }]
       },
       { test: /\.css$/, use: [{ loader: MiniCssExtractPlugin.loader }, { loader: 'css-loader' }] },
       {
@@ -51,7 +55,6 @@ module.exports = {
             }}
         ]
       },
-      { test: /\.html$/, use: { loader: 'html-loader' } },
       {
         test: /\.(png|gif|svg)$/,
         use: [
@@ -76,6 +79,7 @@ module.exports = {
     }
   },
   plugins: [
+    isEnvDevelopment && new ForkTsCheckerWebpackPlugin(),
     new ESLintWebpackPlugin({
       context: utils.appPath,
       cache: false,
@@ -116,16 +120,33 @@ module.exports = {
       context: __dirname,
       manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.fa6d70.json'))
     }),
-    new HtmlWebpackPlugin({
-      title: 'fe-app',
-      filename: 'index.html',
-      template: './public/index.ejs',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-      }
+    isEnvDevelopment && new ReactRefreshWebpackPlugin({
+      overlay: false,
     }),
+    new HtmlWebpackPlugin(
+      Object.assign(
+        {},
+        {
+          title: 'fe-app',
+          filename: 'index.html',
+          template: './public/index.ejs',
+        },
+        isEnvProduction ? {
+          minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true
+          }
+        }: undefined
+      )
+    ),
     new HtmlExtPlugin({
       dllPath: 'static/dll/vendor.dll.fa6d70.js'
     }),
@@ -133,5 +154,5 @@ module.exports = {
       format: 'Build [:bar] :percent (:elapsed seconds)',
       clear: false
     })
-  ]
+  ].filter(Boolean)
 }
