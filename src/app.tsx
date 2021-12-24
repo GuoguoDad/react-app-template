@@ -4,14 +4,14 @@ import { IonReactHashRouter } from '@ionic/react-router'
 import { Route, Redirect } from 'react-router-dom'
 import loadable from '@loadable/component'
 
-const MainTabs = loadable(() => import('@pages/main'))
-const ImgList = loadable(() => import('@pages/imgList'))
-const ImgDetail = loadable(() => import('@pages/imgDetail'))
+const MainTabs = loadable(() => import('@pages/main'/* webpackChunkName: 'MainTabs', webpackPrefetch: true */))
+const ImgList = loadable(() => import('@pages/imgList'/* webpackChunkName: 'ImgList', webpackPrefetch: true */))
+const ImgDetail = loadable(() => import('@pages/imgDetail'/* webpackChunkName: 'ImgDetail', webpackPrefetch: true */))
 
 const App = () => {
   useEffect(() => {
     setupIonicReact({
-      mode: 'md'
+      mode: 'ios'
     })
   },[])
 
