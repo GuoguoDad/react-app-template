@@ -8,7 +8,7 @@
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.json src --fix --format node_modules/eslint-friendly-formatter --cache",
     "dev": "cross-env NODE_ENV=development && webpack serve --config webpack.dev.config.js",
     "build": "rimraf ./dist/* && cross-env NODE_ENV=production && webpack --config webpack.prod.config.js",
-    "dll": "rimraf ./public/static/dll/* && webpack --config webpack.vendor.config.js"
+    "dll": "rimraf ./public/static/dll/* && webpack --config webpack.dll.config.js"
   },
   "dependencies": {
     "@antv/f2": "^3.8.10-beta.1",
