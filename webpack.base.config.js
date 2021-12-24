@@ -41,7 +41,7 @@ module.exports = {
         test: /\.less$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          { loader: 'css-loader', options: { modules: { getLocalIdent: getCSSModuleLocalIdent }, importLoaders: 1,  } },
+          { loader: 'css-loader', options: { modules: true, importLoaders: 1  } },
           { loader: 'postcss-loader' },
           { loader: 'less-loader', options: {
               sourceMap: true,
@@ -103,10 +103,6 @@ module.exports = {
         {
           from: utils.resolve('./public/static'),
           to: 'static',
-        },
-        {
-          from: utils.resolve('./dll'),
-          to: 'dll',
         }
       ],
     }),
@@ -118,7 +114,7 @@ module.exports = {
     new webpack.DllReferencePlugin({
       name: 'vendor',
       context: __dirname,
-      manifest: require(path.resolve(__dirname, './dll/vendor.dll.c1db3a.json'))
+      manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.ce5334.json'))
     }),
     new HtmlWebpackPlugin({
       title: 'fe-app',
@@ -131,7 +127,7 @@ module.exports = {
       }
     }),
     new HtmlExtPlugin({
-      dllPath: 'dll/vendor.dll.c1db3a.js'
+      dllPath: 'static/dll/vendor.dll.ce5334.js'
     }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',

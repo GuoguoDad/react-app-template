@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         library: '[name]',
-        path: path.join(__dirname, './dll'),
+        path: path.join(__dirname, './public/static/dll'),
         filename: '[name].dll.[hash:6].js'
     },
     resolve: {
@@ -34,7 +34,7 @@ module.exports = {
         new webpack.DllPlugin({
             context: __dirname,
             name: '[name]',
-            path: path.join(__dirname, './dll/[name].dll.[hash:6].json'),
+            path: path.join(__dirname, './public/static/dll/[name].dll.[hash:6].json'),
         }),
         new ProgressBarPlugin({
             format: 'Build [:bar] :percent (:elapsed seconds)',
