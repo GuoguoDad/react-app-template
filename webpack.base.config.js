@@ -41,7 +41,7 @@ module.exports = {
         test: /\.less$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          { loader: 'css-loader', options: { modules: true, importLoaders: 1  } },
+          { loader: 'css-loader', options: { modules: { getLocalIdent: getCSSModuleLocalIdent }, importLoaders: 1  } },
           { loader: 'postcss-loader' },
           { loader: 'less-loader', options: {
               sourceMap: true,
