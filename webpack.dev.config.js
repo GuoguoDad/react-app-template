@@ -6,10 +6,11 @@ module.exports = merge(baseWebpackConfig, {
   entry: {
     app: './src/index.tsx'
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   devServer: {
     port: 8080,
     host: '0.0.0.0',
+    open: 'http://127.0.0.1:8080/#/',
     proxy: {
       '/login-api': {
         secure: false,
