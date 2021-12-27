@@ -1,4 +1,4 @@
-import React ,{ useEffect } from 'react'
+import React from 'react'
 import { useIonRouter } from '@ionic/react'
 import { InfiniteScroll, List } from 'antd-mobile'
 import { useSetState } from 'ahooks'
@@ -19,10 +19,6 @@ const imgList = () => {
     dataList: ['http://oss.suning.com/sffe/sffe/goods.png',
       add,add_active,add_disabled,arrowDown,arrowRight,backBlack,backWhite,arrowUp,coupon_card_content,
       banner, bottomBg,couponRed,fire,more,coupon_card_grey], isLoading: false, hasMore: true, refreshing: true })
-
-  useEffect(()=>{
-    console.log('=========imgList')
-  },[])
 
   return (
     <Scene title="图片列表" onLeftClick={() => history.goBack()}>

@@ -6,22 +6,23 @@ module.exports = {
     mode: 'production',
     entry: {
         'vendor': [
+            'qs',
             'react',
             'react-dom',
             'react-router',
             'react-router-dom',
+            '@antv/f2',
+            '@reduxjs/toolkit',
             '@ionic/react',
             '@ionic/react-router',
             '@loadable/component',
             'classnames',
             'redux',
             'react-redux',
-            'qs',
             'lodash',
             'axios',
             'ahooks',
-            'events',
-            '@reduxjs/toolkit'
+            'events'
         ]
     },
     output: {
