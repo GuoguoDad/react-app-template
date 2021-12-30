@@ -43,7 +43,8 @@ module.exports = {
             format: 'Build [:bar] :percent (:elapsed seconds)',
             clear: false
         })
-    ]
+    ],
+    performance: false
 }
 
 
