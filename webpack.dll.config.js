@@ -4,6 +4,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 module.exports = {
     mode: 'production',
+    devtool: 'source-map',
     entry: {
         'vendor': [
             'qs',
@@ -43,8 +44,7 @@ module.exports = {
             format: 'Build [:bar] :percent (:elapsed seconds)',
             clear: false
         })
-    ],
-    performance: false
+    ]
 }
 
 

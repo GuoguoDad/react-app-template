@@ -118,7 +118,7 @@ module.exports = {
     new DllReferencePlugin({
       name: 'vendor',
       context: __dirname,
-      manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.df1e2e.json'))
+      manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.62d286.json'))
     }),
     isEnvDevelopment && new ReactRefreshWebpackPlugin({
       overlay: false,
@@ -148,7 +148,7 @@ module.exports = {
       )
     ),
     new HtmlExtPlugin({
-      dllPath: 'static/dll/vendor.dll.df1e2e.js'
+      dllPath: 'static/dll/vendor.dll.62d286.js'
     }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',
