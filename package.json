@@ -11,7 +11,7 @@
     "dll": "rimraf ./public/static/dll/* && webpack --config webpack.dll.config.js"
   },
   "dependencies": {
-    "@antv/f2": "^3.8.10-beta.1",
+    "@antv/f2": "^3.8.9",
     "@ionic/react": "^6.0.5",
     "@ionic/react-router": "^6.0.5",
     "@loadable/component": "^5.15.2",
