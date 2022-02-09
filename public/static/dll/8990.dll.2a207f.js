@@ -1,0 +1,3 @@
+/*! For license information please see 8990.dll.2a207f.js.LICENSE.txt */
+"use strict";(self.webpackChunk_name_=self.webpackChunk_name_||[]).push([[8990],{8990:function(e,t,n){n.r(t),n.d(t,{createSwipeBackGesture:function(){return s}});var r=n(6587),a=n(6515);const s=(e,t,n,s,c)=>{const o=e.ownerDocument.defaultView;return(0,a.createGesture)({el:e,gestureName:"goback-swipe",gesturePriority:40,threshold:10,canStart:e=>e.startX<=50&&t(),onStart:n,onMove:e=>{const t=e.deltaX/o.innerWidth;s(t)},onEnd:e=>{const t=e.deltaX,n=o.innerWidth,a=t/n,s=e.velocityX,i=n/2,u=s>=0&&(s>.2||e.deltaX>i),d=(u?1-a:a)*n;let l=0;if(d>5){const e=d/Math.abs(s);l=Math.min(e,540)}c(u,a<=0?.01:(0,r.d)(0,a,.9999),l)}})}}}]);
+//# sourceMappingURL=8990.dll.2a207f.js.map

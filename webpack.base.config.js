@@ -115,11 +115,11 @@ module.exports = {
       chunkFilename: utils.assetsPath('css/[name]-[contenthash:5].css'),
       ignoreOrder: true
     }),
-    new DllReferencePlugin({
-      name: 'vendor',
-      context: __dirname,
-      manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.62d286.json'))
-    }),
+    // new DllReferencePlugin({
+    //   name: 'vendor',
+    //   context: __dirname,
+    //   manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.2a207f.json'))
+    // }),
     isEnvDevelopment && new ReactRefreshWebpackPlugin({
       overlay: false,
     }),
@@ -147,9 +147,9 @@ module.exports = {
         }: undefined
       )
     ),
-    new HtmlExtPlugin({
-      dllPath: 'static/dll/vendor.dll.62d286.js'
-    }),
+    // new HtmlExtPlugin({
+    //   dllPath: 'static/dll/vendor.dll.2a207f.js'
+    // }),
     new ProgressBarPlugin({
       format: 'Build [:bar] :percent (:elapsed seconds)',
       clear: false
