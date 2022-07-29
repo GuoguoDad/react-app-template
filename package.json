@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "mock": "sn-mock-server --watch --port 8090 --api-base-path ./mock",
     "stylelint": "npx stylelint \"./src/**/*.{css,scss,less}\" --fix --cache",
     "eslint": "npx eslint --ext .ts,.tsx,.js,.jsx,.json src --fix --format node_modules/eslint-friendly-formatter --cache",
     "dev": "cross-env NODE_ENV=development && webpack serve --config webpack.dev.config.js",
@@ -35,7 +34,6 @@
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
-    "@argojs/sn-mock-server": "^1.2.0",
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
     "@babel/plugin-proposal-function-bind": "^7.14.5",
@@ -107,7 +105,8 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.4",
     "webpack-manifest-plugin": "^4.0.2",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "webpack-plugin-mock": "0.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"
