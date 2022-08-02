@@ -3,10 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
-const ESLintWebpackPlugin = require('eslint-webpack-plugin')
-const StylelintPlugin = require('stylelint-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('react-refresh-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const HtmlExtPlugin = require('./src/kits/html-ext-plugin')
 const getCSSModuleLocalIdent = require('./getCSSModuleLocalIdent')
@@ -79,29 +75,6 @@ module.exports = {
     }
   },
   plugins: [
-    isEnvDevelopment && new ForkTsCheckerWebpackPlugin(),
-    isEnvDevelopment && new ESLintWebpackPlugin({
-      context: utils.appPath,
-      cache: false,
-      emitWarning: true,
-      emitError: true,
-      files: ['src/**/*.ts', 'src/**/*.tsx'],
-      formatter: require.resolve('eslint-friendly-formatter'),
-      eslintPath: require.resolve('eslint'),
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      ignore: true,
-      fix: true
-    }),
-    isEnvDevelopment && new StylelintPlugin({
-      context: utils.appPath,
-      emitWarning: true,
-      emitError: true,
-      files: ['src/**/*.css', 'src/**/*.less'],
-      stylelintPath: require.resolve('stylelint'),
-      ignore: true,
-      fix: true,
-      useEslintrc: true
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -120,9 +93,6 @@ module.exports = {
     //   context: __dirname,
     //   manifest: require(path.resolve(__dirname, './public/static/dll/vendor.dll.2a207f.json'))
     // }),
-    isEnvDevelopment && new ReactRefreshWebpackPlugin({
-      overlay: false,
-    }),
     new HtmlWebpackPlugin(
       Object.assign(
         {},
@@ -131,7 +101,7 @@ module.exports = {
           filename: 'index.html',
           template: './public/index.ejs',
         },
-        isEnvProduction ? {
+        {
           minify: {
             removeComments: true,
             collapseWhitespace: true,
@@ -144,7 +114,7 @@ module.exports = {
             minifyCSS: true,
             minifyURLs: true
           }
-        }: undefined
+        }
       )
     ),
     // new HtmlExtPlugin({
@@ -154,6 +124,6 @@ module.exports = {
       format: 'Build [:bar] :percent (:elapsed seconds)',
       clear: false
     })
-  ].filter(Boolean),
+  ],
   performance: false
 }
