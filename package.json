@@ -106,7 +106,7 @@
     "webpack-dev-server": "^4.7.4",
     "webpack-manifest-plugin": "^4.0.2",
     "webpack-merge": "^5.8.0",
-    "webpack-plugin-mock": "0.0.5"
+    "webpack-plugin-mock": "^1.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"
