@@ -25,16 +25,12 @@ instance.interceptors.request.use(...TokenInjectRequestInterceptor)
 
 const Fetch = {
   get: <T = any>(url: string, config?: AxiosRequestConfig) => {
-    return instance
-      .get<BaseResponse<T>>(url, { ...config })
-      .then((res) => res.data)
+    return instance.get<BaseResponse<T>>(url, { ...config }).then(res => res.data)
   },
   post: <T = any>(url: string, data: any = {}, config?: AxiosRequestConfig) => {
-    return instance
-      .post<BaseResponse<T>>(url, data, { ...config })
-      .then((res) => res.data)
+    return instance.post<BaseResponse<T>>(url, data, { ...config }).then(res => res.data)
   },
-  request: <T = any>(config: AxiosRequestConfig) => instance.request<BaseResponse<T>>({ ...config }),
+  request: <T = any>(config: AxiosRequestConfig) => instance.request<BaseResponse<T>>({ ...config })
 }
 
 export default Fetch

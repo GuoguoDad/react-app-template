@@ -9,7 +9,6 @@ const getCSSModuleLocalIdent = require('./getCSSModuleLocalIdent')
 const utils = require('./utils')
 const path = require('path')
 
-const isEnvProduction = process.env.NODE_ENV === 'production'
 const isEnvDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {

@@ -11,7 +11,7 @@ const MainSlice = createSlice({
   reducers: {
     setState: (state, action: PayloadAction<{ [key: string]: unknown }>) => {
       const obj = action.payload
-      Object.keys(obj).forEach(key=>{
+      Object.keys(obj).forEach(key => {
         // @ts-ignore
         state[key] = obj[key]
       })
@@ -22,4 +22,3 @@ const MainSlice = createSlice({
 export const { setState } = MainSlice.actions
 
 export default MainSlice.reducer
-

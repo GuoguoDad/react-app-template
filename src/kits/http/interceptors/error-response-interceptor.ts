@@ -4,7 +4,7 @@ import { BaseResponse } from '../response'
 
 export const ErrorResponseInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<any>>> = [
   // @ts-ignore
-  (res) => {
+  res => {
     // eslint-disable-next-line eqeqeq
     if (res.data?.code != 0) {
       if (process.env.NODE_ENV === 'development') {
@@ -18,10 +18,10 @@ export const ErrorResponseInterceptor: AxiosInterceptor<AxiosResponse<BaseRespon
     }
     return res
   },
-  (err) => {
+  err => {
     if (err?.message && err.message === 'Network Error') {
       console.log('网络异常')
     }
     return Promise.reject(err)
-  },
+  }
 ]

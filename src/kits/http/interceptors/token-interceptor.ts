@@ -1,7 +1,7 @@
 import { AxiosRequsetInterceptor } from './types'
 
 export const TokenInjectRequestInterceptor: AxiosRequsetInterceptor = [
-  async (req) => {
+  async req => {
     // const token = await UserInfoStorage.getParsedData();
 
     // if (token) {
@@ -17,10 +17,10 @@ export const TokenInjectRequestInterceptor: AxiosRequsetInterceptor = [
     // }
     return req
   },
-  (error) => {
+  error => {
     // @ts-ignore
     // eslint-disable-next-line no-console
     console.warn('axios token error', error)
     return Promise.reject(error)
-  },
+  }
 ]

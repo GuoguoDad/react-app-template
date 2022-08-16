@@ -9,20 +9,26 @@ import styles from './index.module.less'
 const Index = () => {
   const history = useIonRouter()
 
-  useEffect(()=> {
+  useEffect(() => {
     initChart()
-  },[])
+  }, [])
 
   return (
     <Scene title="图片详情" onLeftClick={() => history.goBack()}>
       <div className={styles.pageContainer}>
         <div className={styles.container}>
-          <canvas id="c1"/>
+          <canvas id="c1" />
         </div>
         <div className={styles.container}>
-          <Button color='primary' size='large' onClick={() =>{
-            history.push('/main', 'back', 'pop')
-          }}>pop</Button>
+          <Button
+            color="primary"
+            size="large"
+            onClick={() => {
+              history.push('/main', 'back', 'pop')
+            }}
+          >
+            pop
+          </Button>
         </div>
       </div>
     </Scene>

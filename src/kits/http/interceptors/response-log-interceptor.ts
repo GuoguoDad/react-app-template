@@ -4,14 +4,14 @@ import { BaseResponse } from '../response'
 
 export const ResponseLogInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse<any>>> = [
   // @ts-ignore
-  (res) => {
+  res => {
     console.log(`axios request url is ${res.config.url}`)
     console.log('axios request Data is', res.config.data)
     console.log('axios response', res)
 
     return res
   },
-  (error) => {
+  error => {
     if (error.request) {
       console.warn('.....................................................')
       console.warn('axios response interceptor error and url is', error.request.responseURL)
@@ -19,5 +19,5 @@ export const ResponseLogInterceptor: AxiosInterceptor<AxiosResponse<BaseResponse
       console.warn('.....................................................')
     }
     return Promise.reject(error)
-  },
+  }
 ]
