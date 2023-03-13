@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development && webpack serve --config webpack.dev.config.js",
     "build": "rimraf ./dist/* && cross-env NODE_ENV=production && webpack --config webpack.prod.config.js",
-    "dll": "rimraf ./public/static/dll/* && webpack --config webpack.dll.config.js",
     "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./src",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,html,md}\"",
     "lint:stylelint": "stylelint --fix \"**/*.{less,postcss,css,scss}\" --custom-syntax postcss-less --cache --cache-location node_modules/.cache/stylelint/",
@@ -15,8 +14,8 @@
   },
   "dependencies": {
     "@antv/f2": "^3.8.9",
-    "@ionic/react": "^6.4.0",
-    "@ionic/react-router": "^6.4.0",
+    "@ionic/react": "^6.6.1",
+    "@ionic/react-router": "^6.6.1",
     "@loadable/component": "^5.15.2",
     "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.6.2",
