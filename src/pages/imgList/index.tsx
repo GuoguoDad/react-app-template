@@ -1,8 +1,8 @@
 import React from 'react'
+import { Virtuoso } from 'react-virtuoso'
 import { useIonRouter } from '@ionic/react'
-import { InfiniteScroll, List } from 'antd-mobile'
 import { useSetState } from 'ahooks'
-import { Scene } from '@comps'
+import { Scene, PullToRefresh } from '@comps'
 import {
   add,
   add_active,
@@ -56,18 +56,40 @@ const imgList = () => {
 
   return (
     <Scene title="图片列表" onLeftClick={() => history.goBack()}>
-      <div className={styles.infiniteList}>
-        <List>
-          {state.dataList.map((item, index) => (
+      <PullToRefresh
+        onRefresh={freshEnd => {
+          setTimeout(() => freshEnd(), 2000)
+        }}
+      >
+        <Virtuoso
+          style={{ height: '100%', width: '100%' }}
+          data={state.dataList}
+          endReached={() => {}}
+          itemContent={(index, item) => (
             <div key={index} className={styles.item_container} onClick={() => history.push('/imgDetail')}>
               <img alt={''} className={styles.goods_img} src={item} />
             </div>
-          ))}
-        </List>
-        <InfiniteScroll loadMore={async () => {}} hasMore={state.hasMore} />
-      </div>
+          )}
+          components={{ Footer }}
+        />
+      </PullToRefresh>
     </Scene>
   )
 }
 
 export default imgList
+
+const Footer = () => {
+  return (
+    <div
+      style={{
+        padding: '0.6rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      Loading...
+    </div>
+  )
+}

@@ -1,0 +1,14 @@
+#pull-refresh-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pull-refresh-head {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transform: translateY(-100%);
+}
+.pull-refresh-text {
+  text-align: center;
+}
